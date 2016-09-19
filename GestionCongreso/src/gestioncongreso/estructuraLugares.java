@@ -13,7 +13,7 @@ package gestioncongreso;
 public interface estructuraLugares {
     
     public void agregarComponentes(estructuraLugares a);
-    public String[] getNombreJerarquia(int a,estructuraLugares b);    
+    public String[] getNombreJerarquia(int a,CompuestoLugares b);    
     public void quitarComponente(estructuraLugares a);
     
 }

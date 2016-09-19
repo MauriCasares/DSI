@@ -71,5 +71,5 @@ public class Investigador implements estructuraLugares{
     }
     
     @Override
-    public String[] getNombreJerarquia(int niv, estructuraLugares a){return null;}
+    public String[] getNombreJerarquia(int niv, CompuestoLugares a){return null;}
 }
