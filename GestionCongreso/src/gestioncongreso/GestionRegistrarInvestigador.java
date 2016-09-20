@@ -12,7 +12,7 @@ import org.apache.derby.database.Database;
 public class GestionRegistrarInvestigador {
     
     public static void main(String[] args) {
-        /*Connection con = null;
+        Connection con = null;
         try {
             Calendar d= Calendar.getInstance();
             long fecha = d.getTimeInMillis();
@@ -21,15 +21,18 @@ public class GestionRegistrarInvestigador {
             System.out.println("SE CONECTO");
             Statement stm = con.createStatement();
             SimpleDateFormat f= new SimpleDateFormat("YYYY - MM - DD");
-            String rs="INSERT INTO UNIVERSIDAD VALUES(01,'UTN','FRC', '"+ dia +"' )";
-            int upd= stm.executeUpdate(rs);
-            if(upd!=0) System.out.println("SE MODIFICO");
-            
-           
+            //String rs="INSERT INTO UNIVERSIDAD VALUES(01,'UTN','FRC', '"+ dia +"' )";
+            //int upd= stm.executeUpdate(rs);
+            //if(upd!=0) System.out.println("SE MODIFICO");
+            CompuestoLugares C= new CompuestoLugares();
+            String[] s=C.getNombreJerarquia(1, null);
+            for (String s1 : s) {
+                System.out.println(s1);
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        */
+        
     }
     
 }

@@ -27,28 +27,30 @@ public class CompuestoLugares implements estructuraLugares {
     public String[] getNombreJerarquia(int niv, CompuestoLugares a) {
         
         String[] s = null;
-        String especificacion = "WHERE NOMBRE IS LIKE "+a.getNombre();
+        
         
         if (a != null) {
+            String especificacion = "WHERE NOMBRE IS LIKE "+a.getNombre();
             switch (niv) {
                 case 2://FACULTAD
                     s = new String[contarElementos("FACULTAD",a.getNombre())];
-                    s=listarElementos("UNIVERSIDAD");
+                    s=listarElementos(s,"FACULTAD",a.getNombre());
                     break;
                 case 3://CENTRO
                     s = new String[contarElementos("CENTRO_INVESTIGACION",a.getNombre())];
-                    s=listarElementos("UNIVERSIDAD");
+                    s=listarElementos(s,"CENTRO_INVESTIGACION",a.getNombre());
                     break;
                 case 4://GRUPO
                     s = new String[contarElementos("GRUPO_INVESTIGACION",a.getNombre())];
-                    s=listarElementos("UNIVERSIDAD");
+                    s=listarElementos(s,"GRUPO_INVESTIGACION",a.getNombre());
                     break;
 
             }
 
         } else {
             s = new String[contarElementos("UNIVERSIDAD",null)];
-            s=listarElementos("UNIVERSIDAD");
+            System.out.println("ELEMENTOS CONTADOS");
+            s=listarElementos(s,"UNIVERSIDAD");
 
         }
         return s;
@@ -115,7 +117,7 @@ public class CompuestoLugares implements estructuraLugares {
                     contador++;
                 }
             } else {
-                rs = "SELECT * FROM " + s + " WHERE ID LIKE ";
+                    rs = "SELECT * FROM " + s + " WHERE ID LIKE "+ buscarID(s,padre);
                 res = stm.executeQuery(rs);
                 while (res.next()) {
                     contador++;
@@ -129,19 +131,21 @@ public class CompuestoLugares implements estructuraLugares {
         return contador;
     }
     //PARA UNIVERSIDAD
-    public String[] listarElementos(String a){
-    String[] s=null;
+    public String[] listarElementos(String[] s,String a){
+    
     int i=0;
     try{
         String rs;
         con=DataBase.getConnection();
         stm = con.createStatement();
-        ResultSet res=null;
-        rs="SELECT NOMBRE FROM "+a;
+        
+        rs="SELECT * FROM "+a;
                     res=stm.executeQuery(rs);
                     while(res.next()){
-                        s[i]=res.getNString(0);
+                        System.out.println("LISTANDO");
+                        s[i]=res.getString(2);
                         i++;
+                        System.out.println("No se listo");
                     }
             }catch(Exception e){
             System.out.println(e.getMessage());}
@@ -151,8 +155,8 @@ public class CompuestoLugares implements estructuraLugares {
     }
     
     //PARA LOS DEMAS, CAMBIAN LOS PARAMETROS
-    public String[] listarElementos(String a,String padre){
-    String[] s=null;
+    public String[] listarElementos(String [] s,String a,String padre){
+    
     int i=0;
     try{
         String rs;
