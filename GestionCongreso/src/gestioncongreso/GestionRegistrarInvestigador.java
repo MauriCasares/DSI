@@ -25,7 +25,7 @@ public class GestionRegistrarInvestigador {
             int upd= stm.executeUpdate(rs);
             if(upd!=0) System.out.println("SE MODIFICO");
             
-           
+           asdfghjk
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
