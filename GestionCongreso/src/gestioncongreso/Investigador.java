@@ -12,12 +12,15 @@ import java.util.Date;
  *
  * @author Ochan12
  */
-public class Investigador implements estructuraLugares{
+public class Investigador implements IEstructuraLugares{
     private String apellido;
     private String mail;
     private String nombre;
     private int nroDocumento;
     private Date fechaNacimiento;
+    private TituloObtenido tituloObtenido;
+    private TipoDocumento tipoDocumento;
+    private AreaInvestigacion areaInvestigacion;
 
     public String getApellido() {
         return apellido;
@@ -60,13 +63,13 @@ public class Investigador implements estructuraLugares{
     }
 
     @Override
-    public void agregarComponentes(estructuraLugares a) {
+    public void agregarComponentes(IEstructuraLugares a) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
      @Override
-    public void quitarComponente(estructuraLugares a) {
+    public void quitarComponente(IEstructuraLugares a) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
