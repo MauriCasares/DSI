@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package gestioncongreso;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.Date;
+import java.sql.*;
+import java.util.*;
 /**
  *
  * @author Ochan12
  */
-public class CompuestoLugares implements IEstructuraLugares {
+public class CompuestoLugares implements estructuraLugares{
+    
     private String descripcion, nombre;
     private Date fechaCreacion;
     private int nivel; //1-Universidad 2-Facultad 3-Centro 4-Grupo 5-Investigador
@@ -19,45 +20,48 @@ public class CompuestoLugares implements IEstructuraLugares {
     private static Connection con;
     private Statement stm;
     private ResultSet res;
-
-    public CompuestoLugares(String nombre, int nivel) {
-        this.nombre = nombre;
-        this.nivel = nivel;
+    
+    public CompuestoLugares(String d, String n, int niv){
+        descripcion =d;
+        nombre=n;
+        nivel=niv;
     }
-    
-    
-    
-    
+    public CompuestoLugares(){
+        
+    }
+        
     @Override
-    public void agregarComponentes(IEstructuraLugares a) {
+    public void agregarComponentes(estructuraLugares a) {
        }
 
     @Override
     public String[] getNombreJerarquia(int niv, CompuestoLugares a) {
         
         String[] s = null;
-        String especificacion = "WHERE NOMBRE IS LIKE "+a.getNombre();
+        
         
         if (a != null) {
+            //String especificacion = "WHERE NOMBRE IS LIKE "+a.getNombre();
             switch (niv) {
                 case 2://FACULTAD
                     s = new String[contarElementos("FACULTAD",a.getNombre())];
-                    s=listarElementos("UNIVERSIDAD");
+                    s=listarElementos(s,"FACULTAD",a.getNombre());
                     break;
                 case 3://CENTRO
                     s = new String[contarElementos("CENTRO_INVESTIGACION",a.getNombre())];
-                    s=listarElementos("UNIVERSIDAD");
+                    s=listarElementos(s,"CENTRO_INVESTIGACION",a.getNombre());
                     break;
                 case 4://GRUPO
                     s = new String[contarElementos("GRUPO_INVESTIGACION",a.getNombre())];
-                    s=listarElementos("UNIVERSIDAD");
+                    s=listarElementos(s,"GRUPO_INVESTIGACION",a.getNombre());
                     break;
 
             }
 
         } else {
             s = new String[contarElementos("UNIVERSIDAD",null)];
-            s=listarElementos("UNIVERSIDAD");
+            System.out.println("ELEMENTOS CONTADOS");
+            s=listarElementos(s,"UNIVERSIDAD");
 
         }
         return s;
@@ -67,7 +71,7 @@ public class CompuestoLugares implements IEstructuraLugares {
     
 
     @Override
-    public void quitarComponente(IEstructuraLugares a) {
+    public void quitarComponente(estructuraLugares a) {
         }
 
     public String getDescripcion() {
@@ -124,7 +128,7 @@ public class CompuestoLugares implements IEstructuraLugares {
                     contador++;
                 }
             } else {
-                rs = "SELECT * FROM " + s + " WHERE ID LIKE ";
+                    rs = "SELECT * FROM " + s + " WHERE ID LIKE "+ buscarID(s,padre);
                 res = stm.executeQuery(rs);
                 while (res.next()) {
                     contador++;
@@ -138,18 +142,18 @@ public class CompuestoLugares implements IEstructuraLugares {
         return contador;
     }
     //PARA UNIVERSIDAD
-    public String[] listarElementos(String a){
-    String[] s=null;
+    public String[] listarElementos(String[] s,String a){
+    
     int i=0;
     try{
         String rs;
         con=DataBase.getConnection();
-        stm = con.createStatement();
-        ResultSet res=null;
-        rs="SELECT NOMBRE FROM "+a;
-                    res=stm.executeQuery(rs);
+        stm = con.createStatement();        
+        rs="SELECT * FROM "+a;
+        res=stm.executeQuery(rs);
                     while(res.next()){
-                        s[i]=res.getNString(0);
+                        System.out.println("LISTANDO");
+                        s[i]=res.getString(2);
                         i++;
                     }
             }catch(Exception e){
@@ -160,18 +164,17 @@ public class CompuestoLugares implements IEstructuraLugares {
     }
     
     //PARA LOS DEMAS, CAMBIAN LOS PARAMETROS
-    private String[] listarElementos(String a,String padre){
-    String[] s=null;
+    public String[] listarElementos(String [] s,String a,String padre){
+        System.out.println("Listar elementos");
     int i=0;
     try{
         String rs;
         con=DataBase.getConnection();
         stm = con.createStatement();
-        ResultSet res=null;
         rs="SELECT NOMBRE FROM "+a;
-                    res=stm.executeQuery(rs);
+        res=stm.executeQuery(rs);
                     while(res.next()){
-                        s[i]=res.getNString(1);
+                        s[i]=res.getString(1);
                         i++;
                     }
             }catch(Exception e){
@@ -183,24 +186,22 @@ public class CompuestoLugares implements IEstructuraLugares {
     
     
     
-    public int buscarID(String padre,String nombre){
-        ResultSet res=null;
+    public int buscarID(String nombre,String padre){
+        System.out.println("Buscar id");
         int i=0;
         try{
         con=DataBase.getConnection();
-        stm = con.createStatement();
-        
-        res=stm.executeQuery("SELECT ID FROM "+padre.toUpperCase()+" WHERE NOMBRE = "+nombre.toUpperCase());
+        stm = con.createStatement();        
+        res=stm.executeQuery("SELECT * FROM "+nombre.toUpperCase()+" WHERE NOMBRE LIKE "+padre.toUpperCase());
+        System.out.println(res.getString("ID"));
         i = res.getInt(1);
+        con.close();
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
         return i;
     }
-
-    @Override
-    public IEstructuraLugares[] obtenerHijo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
+        
 }
+
