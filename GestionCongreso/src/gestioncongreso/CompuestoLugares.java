@@ -189,5 +189,10 @@ public class CompuestoLugares implements IEstructuraLugares {
         }
         return i;
     }
+
+    @Override
+    public IEstructuraLugares[] obtenerHijo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
