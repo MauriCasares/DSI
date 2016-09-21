@@ -10,7 +10,7 @@ package gestioncongreso;
  * @author Ochan12
  * @param <E>
  */
-public class List<E extends estructuraLugares> {
+public class List<E extends IEstructuraLugares> {
     private Nodo<E> frente;
     private int size;
 

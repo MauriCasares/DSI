@@ -54,6 +54,10 @@ public class Investigador implements IEstructuraLugares{
     public void setCategoriaInvestigacion(CategoriaInvestigacion categoriaInvestigacion) {
         this.categoriaInvestigacion = categoriaInvestigacion;
     }
+    public Investigador (int nroDocumento, TipoDocumento tipo ){
+        this.nroDocumento=nroDocumento;
+        this.tipoDocumento=tipo;
+    }
 
     public Investigador(String apellido, String mail, String nombre, int nroDocumento, Date fechaNacimiento, TituloObtenido tituloObtenido, TipoDocumento tipoDocumento, AreaInvestigacion areaInvestigacion, CategoriaInvestigacion categoriaInvestigacion) {
         this.apellido = apellido;

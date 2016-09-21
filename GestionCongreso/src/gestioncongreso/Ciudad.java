@@ -34,6 +34,9 @@ public class Ciudad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+//    public Provincia conocerProvincia(){
+//        
+//    }
 
     @Override
     public String toString() {

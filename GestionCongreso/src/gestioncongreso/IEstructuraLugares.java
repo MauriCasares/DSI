@@ -15,5 +15,6 @@ public interface IEstructuraLugares {
     public void agregarComponentes(IEstructuraLugares a);
     public String[] getNombreJerarquia(int a,CompuestoLugares b);    
     public void quitarComponente(IEstructuraLugares a);
+    public IEstructuraLugares[] obtenerHijo();
     
 }

@@ -19,6 +19,14 @@ public class CompuestoLugares implements IEstructuraLugares {
     private static Connection con;
     private Statement stm;
     private ResultSet res;
+
+    public CompuestoLugares(String nombre, int nivel) {
+        this.nombre = nombre;
+        this.nivel = nivel;
+    }
+    
+    
+    
     
     @Override
     public void agregarComponentes(IEstructuraLugares a) {
@@ -152,7 +160,7 @@ public class CompuestoLugares implements IEstructuraLugares {
     }
     
     //PARA LOS DEMAS, CAMBIAN LOS PARAMETROS
-    public String[] listarElementos(String a,String padre){
+    private String[] listarElementos(String a,String padre){
     String[] s=null;
     int i=0;
     try{
