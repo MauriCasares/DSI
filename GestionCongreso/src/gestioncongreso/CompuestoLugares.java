@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package gestioncongreso;
-import java.util.Date;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author Ochan12
  */
-public class CompuestoLugares implements estructuraLugares {
+public class CompuestoLugares implements IEstructuraLugares {
     private String descripcion, nombre;
     private Date fechaCreacion;
     private int nivel; //1-Universidad 2-Facultad 3-Centro 4-Grupo 5-Investigador
@@ -20,7 +21,7 @@ public class CompuestoLugares implements estructuraLugares {
     private ResultSet res;
     
     @Override
-    public void agregarComponentes(estructuraLugares a) {
+    public void agregarComponentes(IEstructuraLugares a) {
        }
 
     @Override
@@ -58,7 +59,7 @@ public class CompuestoLugares implements estructuraLugares {
     
 
     @Override
-    public void quitarComponente(estructuraLugares a) {
+    public void quitarComponente(IEstructuraLugares a) {
         }
 
     public String getDescripcion() {
