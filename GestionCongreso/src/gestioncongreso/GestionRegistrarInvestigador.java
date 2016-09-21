@@ -24,8 +24,9 @@ public class GestionRegistrarInvestigador {
             //String rs="INSERT INTO UNIVERSIDAD VALUES(01,'UTN','FRC', '"+ dia +"' )";
             //int upd= stm.executeUpdate(rs);
             //if(upd!=0) System.out.println("SE MODIFICO");
-            CompuestoLugares C= new CompuestoLugares();
-            String[] s=C.getNombreJerarquia(1, null);
+            CompuestoLugares C2 = new CompuestoLugares();
+            CompuestoLugares C= new CompuestoLugares("bla bla","FRC",2);
+            String[] s=C2.getNombreJerarquia(2, C);
             for (String s1 : s) {
                 System.out.println(s1);
             }

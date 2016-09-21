@@ -10,7 +10,8 @@ import java.sql.*;
  *
  * @author Ochan12
  */
-public class CompuestoLugares implements estructuraLugares {
+public class CompuestoLugares implements estructuraLugares{
+    
     private String descripcion, nombre;
     private Date fechaCreacion;
     private int nivel; //1-Universidad 2-Facultad 3-Centro 4-Grupo 5-Investigador
@@ -19,6 +20,15 @@ public class CompuestoLugares implements estructuraLugares {
     private Statement stm;
     private ResultSet res;
     
+    public CompuestoLugares(String d, String n, int niv){
+        descripcion =d;
+        nombre=n;
+        nivel=niv;
+    }
+    public CompuestoLugares(){
+        
+    }
+        
     @Override
     public void agregarComponentes(estructuraLugares a) {
        }
@@ -30,7 +40,7 @@ public class CompuestoLugares implements estructuraLugares {
         
         
         if (a != null) {
-            String especificacion = "WHERE NOMBRE IS LIKE "+a.getNombre();
+            //String especificacion = "WHERE NOMBRE IS LIKE "+a.getNombre();
             switch (niv) {
                 case 2://FACULTAD
                     s = new String[contarElementos("FACULTAD",a.getNombre())];
@@ -137,15 +147,13 @@ public class CompuestoLugares implements estructuraLugares {
     try{
         String rs;
         con=DataBase.getConnection();
-        stm = con.createStatement();
-        
+        stm = con.createStatement();        
         rs="SELECT * FROM "+a;
-                    res=stm.executeQuery(rs);
+        res=stm.executeQuery(rs);
                     while(res.next()){
                         System.out.println("LISTANDO");
                         s[i]=res.getString(2);
                         i++;
-                        System.out.println("No se listo");
                     }
             }catch(Exception e){
             System.out.println(e.getMessage());}
@@ -156,17 +164,16 @@ public class CompuestoLugares implements estructuraLugares {
     
     //PARA LOS DEMAS, CAMBIAN LOS PARAMETROS
     public String[] listarElementos(String [] s,String a,String padre){
-    
+        System.out.println("Listar elementos");
     int i=0;
     try{
         String rs;
         con=DataBase.getConnection();
         stm = con.createStatement();
-        ResultSet res=null;
         rs="SELECT NOMBRE FROM "+a;
-                    res=stm.executeQuery(rs);
+        res=stm.executeQuery(rs);
                     while(res.next()){
-                        s[i]=res.getNString(1);
+                        s[i]=res.getString(1);
                         i++;
                     }
             }catch(Exception e){
@@ -178,14 +185,14 @@ public class CompuestoLugares implements estructuraLugares {
     
     
     
-    public int buscarID(String padre,String nombre){
-        ResultSet res=null;
+    public int buscarID(String nombre,String padre){
+        System.out.println("Buscar id");
         int i=0;
         try{
         con=DataBase.getConnection();
-        stm = con.createStatement();
-        
-        res=stm.executeQuery("SELECT ID FROM "+padre.toUpperCase()+" WHERE NOMBRE = "+nombre.toUpperCase());
+        stm = con.createStatement();        
+        res=stm.executeQuery("SELECT * FROM "+nombre.toUpperCase()+" WHERE NOMBRE LIKE "+padre.toUpperCase());
+        System.out.println(res.getString("ID"));
         i = res.getInt(1);
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -193,4 +200,6 @@ public class CompuestoLugares implements estructuraLugares {
         return i;
     }
     
+        
 }
+
