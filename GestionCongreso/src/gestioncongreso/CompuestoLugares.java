@@ -4,14 +4,19 @@
  * and open the template in the editor.
  */
 package gestioncongreso;
-import java.util.Date;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author Ochan12
  */
+<<<<<<< HEAD
 public class CompuestoLugares implements estructuraLugares{
     
+=======
+public class CompuestoLugares implements IEstructuraLugares {
+>>>>>>> origin/master
     private String descripcion, nombre;
     private Date fechaCreacion;
     private int nivel; //1-Universidad 2-Facultad 3-Centro 4-Grupo 5-Investigador
@@ -30,7 +35,7 @@ public class CompuestoLugares implements estructuraLugares{
     }
         
     @Override
-    public void agregarComponentes(estructuraLugares a) {
+    public void agregarComponentes(IEstructuraLugares a) {
        }
 
     @Override
@@ -70,7 +75,7 @@ public class CompuestoLugares implements estructuraLugares{
     
 
     @Override
-    public void quitarComponente(estructuraLugares a) {
+    public void quitarComponente(IEstructuraLugares a) {
         }
 
     public String getDescripcion() {
@@ -198,6 +203,11 @@ public class CompuestoLugares implements estructuraLugares{
             System.out.println(e.getMessage());
         }
         return i;
+    }
+
+    @Override
+    public IEstructuraLugares[] obtenerHijo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
         

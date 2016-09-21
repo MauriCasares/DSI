@@ -10,10 +10,10 @@ package gestioncongreso;
  *
  * @author Ochan12
  */
-public interface estructuraLugares {
+public interface IEstructuraLugares {
     
-    public void agregarComponentes(estructuraLugares a);
+    public void agregarComponentes(IEstructuraLugares a);
     public String[] getNombreJerarquia(int a,CompuestoLugares b);    
-    public void quitarComponente(estructuraLugares a);
+    public void quitarComponente(IEstructuraLugares a);
     
 }
