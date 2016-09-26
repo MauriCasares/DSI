@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author Ochan12
  */
-public class CompuestoLugares implements estructuraLugares{
+public class CompuestoLugares implements IEstructuraLugares{
     
     private String descripcion, nombre;
     private Date fechaCreacion;
@@ -31,7 +31,7 @@ public class CompuestoLugares implements estructuraLugares{
     }
         
     @Override
-    public void agregarComponentes(estructuraLugares a) {
+    public void agregarComponentes(IEstructuraLugares a) {
        }
 
     @Override
@@ -71,7 +71,7 @@ public class CompuestoLugares implements estructuraLugares{
     
 
     @Override
-    public void quitarComponente(estructuraLugares a) {
+    public void quitarComponente(IEstructuraLugares a) {
         }
 
     public String getDescripcion() {
@@ -200,6 +200,11 @@ public class CompuestoLugares implements estructuraLugares{
             System.out.println(e.getMessage());
         }
         return i;
+    }
+
+    @Override
+    public IEstructuraLugares[] obtenerHijo() {
+       return null; //To change body of generated methods, choose Tools | Templates.
     }
     
         

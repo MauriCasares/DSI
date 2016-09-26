@@ -7,7 +7,11 @@
 package GUI;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 
 /**
@@ -23,7 +27,8 @@ public class PantallaRegistrarInvestigador extends javax.swing.JFrame {
         initComponents();
     }
     public void mostrarTiposDocumentos(ArrayList lista){
-        
+        DefaultComboBoxModel modeloComboTipoDoc = new DefaultComboBoxModel(lista.toArray());
+        cmbTipoDocumento.setModel(modeloComboTipoDoc);
     }
     public void solicitarSeleccionFechaNacimiento(){
         
@@ -92,7 +97,6 @@ public class PantallaRegistrarInvestigador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Investigador");
 
-        cmbTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DNI", "LC", "LE", "CI" }));
         cmbTipoDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoDocumentoActionPerformed(evt);
@@ -164,7 +168,7 @@ public class PantallaRegistrarInvestigador extends javax.swing.JFrame {
 
         lblArea.setText("Area Investigacion:");
 
-        jLayeredPane1.setLayout(new java.awt.GridLayout());
+        jLayeredPane1.setLayout(new java.awt.GridLayout(1, 0));
 
         cmbArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -483,7 +487,14 @@ public class PantallaRegistrarInvestigador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaRegistrarInvestigador().setVisible(true);
+                try {
+                    PantallaRegistrarInvestigador P = new PantallaRegistrarInvestigador(); 
+                    P.setVisible(true);
+                    gestioncongreso.GestorRegistrarInvestigador gestor = new gestioncongreso.GestorRegistrarInvestigador();
+                    gestor.registrarInvestigador(P);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PantallaRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

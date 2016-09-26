@@ -260,11 +260,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JComboBox" name="cmbTipoDocumento">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;DNI&quot;, &quot;LC&quot;, &quot;LE&quot;, &quot;CI&quot; })" type="code"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTipoDocumentoActionPerformed"/>
       </Events>

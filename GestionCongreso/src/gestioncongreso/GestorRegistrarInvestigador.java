@@ -19,9 +19,12 @@ public class GestorRegistrarInvestigador {
     private java.sql.Date fechaActual;
     private java.sql.Date fechaNacimiento;
     private ArrayList<CompuestoLugares> listaCompuesto;
-    public void registrarInvestigador() throws SQLException
+    public void registrarInvestigador(GUI.PantallaRegistrarInvestigador p) throws SQLException
     {
+        System.out.println("1");
+        pantalla=p;
         pantalla.mostrarTiposDocumentos(buscarTipoDocumento());
+        System.out.println("2");
         if(validarInvestigador(nroDocumento,tipoDocumento))
             pantalla.solicitarSeleccionFechaNacimiento();
         getFechaActual();
@@ -94,14 +97,14 @@ public class GestorRegistrarInvestigador {
         res=stm.executeQuery("SELECT * FROM Tipo_Documento");
         while(res.next()){
             
-            TipoDocumento t = new TipoDocumento(res.getString(3),res.getString(2));
-            vectorTipoDoc.add(t.getNombre());
-            vectorTipoDoc.add(t);
-            
+            TipoDocumento t = new TipoDocumento(res.getString(2),res.getString(1));
+            vectorTipoDoc.add(t.getAbreviatura());
+                       
         }
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+         System.out.println("los encontro");
         return vectorTipoDoc;
     }
     public void tomarDatosInvestigador(String nombre, String apellido, String tipoDoc, int nroDoc){
@@ -115,15 +118,13 @@ public class GestorRegistrarInvestigador {
        
          try{
         con=DataBase.getConnection();
-        stm = con.createStatement();
-        
-        res=stm.executeQuery("SELECT * FROM Investigador I JOIN TipoDocumento T ON I.id_tipo_documento=T.id_tipo_documento ");
-        while(res.next()){
+        stm = con.createStatement();        
+        res=stm.executeQuery("SELECT * FROM Investigador I JOIN Tipo_Documento T ON I.id_tipo_documento=T.id_tipo_documento ");
+        while(res.next()&&res!=null){           
             
-           
             TipoDocumento t = new TipoDocumento(res.getString("abreviatura"),res.getString("nombre_tipo_documento"));
             Investigador inv=new Investigador(res.getInt("NRO_DOCUMENTO_INVESTIGADOR"),t);
-            
+            if(t!=null&&inv!=null)
             if(inv.existeInvestigador(nroDoc, tipoDoc)) return false;
             
         }
@@ -154,7 +155,7 @@ public class GestorRegistrarInvestigador {
         stm = con.createStatement();
         
         res=stm.executeQuery("SELECT * FROM Universidad");
-        CompuestoLugares comp=new CompuestoLugares(res.getString("nombre_universidad"),1);
+        //CompuestoLugares comp=new CompuestoLugares(res.getString("nombre_universidad"),1);
         while(res.next()){
             
 
