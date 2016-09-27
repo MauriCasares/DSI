@@ -28,6 +28,7 @@ public class GestorRegistrarInvestigador {
         setFechaActual();
         getFechaActual();
         System.out.println(getFechaActual());
+        
         if(validarFechaNacimiento());
             
         

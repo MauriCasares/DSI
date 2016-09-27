@@ -47,6 +47,7 @@ public class PanelInvestigador extends javax.swing.JPanel {
         cmb_tipoDocumento = new javax.swing.JComboBox();
         date_fechaNacimiento = new javax.swing.JFormattedTextField();
         txt_nroDocumento = new javax.swing.JFormattedTextField();
+        btn_validar = new javax.swing.JButton();
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,32 +65,32 @@ public class PanelInvestigador extends javax.swing.JPanel {
         lbl_nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbl_nombre.setAlignmentX(0.5F);
         add(lbl_nombre);
-        lbl_nombre.setBounds(10, 30, 120, 15);
+        lbl_nombre.setBounds(10, 100, 120, 15);
 
         lbl_apellido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_apellido.setText("Apellido:");
         add(lbl_apellido);
-        lbl_apellido.setBounds(10, 70, 120, 14);
+        lbl_apellido.setBounds(10, 140, 120, 14);
 
         lbl_tipoDocumento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_tipoDocumento.setText("Tipo Documento:");
         add(lbl_tipoDocumento);
-        lbl_tipoDocumento.setBounds(10, 110, 120, 14);
+        lbl_tipoDocumento.setBounds(-10, 60, 120, 14);
 
         lbl_nroDocumento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_nroDocumento.setText("Número:");
         add(lbl_nroDocumento);
-        lbl_nroDocumento.setBounds(260, 110, 50, 14);
+        lbl_nroDocumento.setBounds(190, 60, 50, 14);
 
         lbl_FechaNacimiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_FechaNacimiento.setText("Fecha Nacimiento:");
         add(lbl_FechaNacimiento);
-        lbl_FechaNacimiento.setBounds(10, 150, 120, 15);
+        lbl_FechaNacimiento.setBounds(10, 190, 120, 15);
 
         lbl_eMail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_eMail.setText("E-mail:");
         add(lbl_eMail);
-        lbl_eMail.setBounds(10, 190, 120, 14);
+        lbl_eMail.setBounds(10, 230, 120, 14);
 
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +98,7 @@ public class PanelInvestigador extends javax.swing.JPanel {
             }
         });
         add(txt_nombre);
-        txt_nombre.setBounds(150, 25, 300, 20);
+        txt_nombre.setBounds(150, 100, 300, 20);
 
         txt_apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +106,7 @@ public class PanelInvestigador extends javax.swing.JPanel {
             }
         });
         add(txt_apellido);
-        txt_apellido.setBounds(150, 65, 300, 20);
+        txt_apellido.setBounds(150, 140, 300, 20);
 
         txt_eMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,20 +114,29 @@ public class PanelInvestigador extends javax.swing.JPanel {
             }
         });
         add(txt_eMail);
-        txt_eMail.setBounds(150, 185, 300, 20);
+        txt_eMail.setBounds(150, 230, 300, 20);
 
         cmb_tipoDocumento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cmb_tipoDocumento);
-        cmb_tipoDocumento.setBounds(151, 105, 100, 20);
+        cmb_tipoDocumento.setBounds(120, 60, 60, 20);
 
         date_fechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         date_fechaNacimiento.setText("dd/mm/yyyy");
         add(date_fechaNacimiento);
-        date_fechaNacimiento.setBounds(150, 145, 300, 20);
+        date_fechaNacimiento.setBounds(150, 190, 300, 20);
 
         txt_nroDocumento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         add(txt_nroDocumento);
-        txt_nroDocumento.setBounds(320, 105, 130, 20);
+        txt_nroDocumento.setBounds(250, 60, 130, 20);
+
+        btn_validar.setText("Validar");
+        btn_validar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_validarActionPerformed(evt);
+            }
+        });
+        add(btn_validar);
+        btn_validar.setBounds(390, 60, 65, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -145,8 +155,13 @@ public class PanelInvestigador extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_eMailActionPerformed
 
+    private void btn_validarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_validarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_validarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_validar;
     private javax.swing.JComboBox cmb_tipoDocumento;
     private javax.swing.JFormattedTextField date_fechaNacimiento;
     private javax.swing.JLabel lbl_FechaNacimiento;
