@@ -9,7 +9,7 @@ public class GestorRegistrarInvestigador {
     private Connection con;
     private ResultSet res ;
     private Statement stm;
-    private GUI.PantallaRegistrarInvestigador pantalla;
+    private GUI.PantallaRegistrarInvestigador2 pantalla;
     private String nombreInvestigador;
     private String apellidoInvestigador;
     private String facultadInvestigador;
@@ -19,15 +19,15 @@ public class GestorRegistrarInvestigador {
     private java.sql.Date fechaActual;
     private java.sql.Date fechaNacimiento;
     private ArrayList<CompuestoLugares> listaCompuesto;
-    public void registrarInvestigador(GUI.PantallaRegistrarInvestigador p) throws SQLException
+    public void registrarInvestigador(GUI.PantallaRegistrarInvestigador2 p) throws SQLException
     {
-        System.out.println("1");
         pantalla=p;
         pantalla.mostrarTiposDocumentos(buscarTipoDocumento());
-        System.out.println("2");
         if(validarInvestigador(nroDocumento,tipoDocumento))
             pantalla.solicitarSeleccionFechaNacimiento();
+        setFechaActual();
         getFechaActual();
+        System.out.println(getFechaActual());
         if(validarFechaNacimiento());
             
         
@@ -79,7 +79,9 @@ public class GestorRegistrarInvestigador {
       
         return fechaActual;
         
-    }    public void setFechaActual() {
+    }    
+    
+    public void setFechaActual() {
         Calendar d= Calendar.getInstance();
         long fecha = d.getTimeInMillis();
         fechaActual= new java.sql.Date(fecha);

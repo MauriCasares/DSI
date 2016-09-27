@@ -487,14 +487,9 @@ public class PantallaRegistrarInvestigador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    PantallaRegistrarInvestigador P = new PantallaRegistrarInvestigador(); 
-                    P.setVisible(true);
-                    gestioncongreso.GestorRegistrarInvestigador gestor = new gestioncongreso.GestorRegistrarInvestigador();
-                    gestor.registrarInvestigador(P);
-                } catch (SQLException ex) {
-                    Logger.getLogger(PantallaRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                PantallaRegistrarInvestigador P = new PantallaRegistrarInvestigador();
+                P.setVisible(true);
+                gestioncongreso.GestorRegistrarInvestigador gestor = new gestioncongreso.GestorRegistrarInvestigador();
             }
         });
     }

@@ -1,26 +1,42 @@
 package GUI;
 
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
+    PanelInvestigador p_investigador;
+    PanelFacultad p_facultad;
+    PanelTitulo p_titulo;
 
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
         initComponents();
         
-        JPanel p_investigador = new PanelInvestigador();
-        JPanel p_facultad = new PanelFacultad();
-        JPanel p_titulo = new PanelTitulo();
+        p_investigador = new PanelInvestigador();
+        p_facultad = new PanelFacultad();
+        p_titulo = new PanelTitulo();
+        p_investigador.setVisible(true);
         
         p_cuerpo.add(p_investigador, "investigador");
         p_cuerpo.add(p_facultad, "facultad" );
         p_cuerpo.add(p_titulo, "titulo");
-        
+        p_cuerpo.setVisible(true);
         carta = (CardLayout) this.p_cuerpo.getLayout();
         
         seleccionarPestaña(investigador);
         
+    }
+    
+    public void mostrarTiposDocumentos(ArrayList lista){
+     p_investigador.mostrarTiposDocumentos(lista);
+    }
+    
+    public void solicitarSeleccionFechaNacimiento(){
+        p_investigador.solicitarFechaNacimiento();
     }
 
     @SuppressWarnings("unchecked")
@@ -242,7 +258,14 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaRegistrarInvestigador2().setVisible(true);
+                try {
+                    PantallaRegistrarInvestigador2 P = new PantallaRegistrarInvestigador2(); 
+                    P.setVisible(true);
+                    gestioncongreso.GestorRegistrarInvestigador gestor = new gestioncongreso.GestorRegistrarInvestigador();
+                    gestor.registrarInvestigador(P);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PantallaRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
