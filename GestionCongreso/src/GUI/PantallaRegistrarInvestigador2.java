@@ -11,19 +11,23 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     PanelInvestigador p_investigador;
     PanelFacultad p_facultad;
     PanelTitulo p_titulo;
+    private final int investigador = 1;
+    private final int facultad = 2;
+    private final int titulo = 3;
 
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
+        
         initComponents();
         
         p_investigador = new PanelInvestigador();
         p_facultad = new PanelFacultad();
         p_titulo = new PanelTitulo();
-        p_investigador.setVisible(true);
-        
         p_cuerpo.add(p_investigador, "investigador");
         p_cuerpo.add(p_facultad, "facultad" );
         p_cuerpo.add(p_titulo, "titulo");
+        
+        p_investigador.setVisible(true);
         p_cuerpo.setVisible(true);
         carta = (CardLayout) this.p_cuerpo.getLayout();
         
@@ -54,7 +58,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
         p_cuerpo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 153)));
         p_cuerpo.setForeground(new java.awt.Color(240, 240, 240));
-        p_cuerpo.setLayout(new java.awt.CardLayout());
+        p_cuerpo.setLayout(new java.awt.CardLayout(12, 123));
         getContentPane().add(p_cuerpo, java.awt.BorderLayout.CENTER);
 
         p_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 153)));
@@ -259,10 +263,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    System.out.println("CARTA");
                     PantallaRegistrarInvestigador2 P = new PantallaRegistrarInvestigador2(); 
-                    P.setVisible(true);
+                    P.setVisible(true);                    
                     gestioncongreso.GestorRegistrarInvestigador gestor = new gestioncongreso.GestorRegistrarInvestigador();
                     gestor.registrarInvestigador(P);
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(PantallaRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -276,12 +282,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private final java.awt.Color colorSeleccionado = new java.awt.Color(0,102,153);
     
     
-    private final int investigador = 1;
-    private final int facultad = 2;
-    private final int titulo = 3;
+//    private final int investigador = 1;
+//    private final int facultad = 2;
+//    private final int titulo = 3;
     
     
-    private CardLayout carta;
+    private static CardLayout carta;
     private boolean investigador_select;
     private boolean facultad_select;
     private boolean titulo_select;

@@ -43,7 +43,10 @@
         </Constraint>
       </Constraints>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout">
+        <Property name="horizontalGap" type="int" value="12"/>
+        <Property name="verticalGap" type="int" value="123"/>
+      </Layout>
     </Container>
     <Container class="javax.swing.JPanel" name="p_encabezado">
       <Properties>

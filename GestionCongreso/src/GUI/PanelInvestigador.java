@@ -59,76 +59,51 @@ public class PanelInvestigador extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(500, 270));
         setMinimumSize(new java.awt.Dimension(500, 270));
         setPreferredSize(new java.awt.Dimension(500, 270));
-        setLayout(null);
 
         lbl_nombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_nombre.setText("Nombre:");
         lbl_nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbl_nombre.setAlignmentX(0.5F);
-        add(lbl_nombre);
-        lbl_nombre.setBounds(10, 100, 120, 15);
 
         lbl_apellido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_apellido.setText("Apellido:");
-        add(lbl_apellido);
-        lbl_apellido.setBounds(10, 140, 120, 14);
 
         lbl_tipoDocumento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_tipoDocumento.setText("Tipo Documento:");
-        add(lbl_tipoDocumento);
-        lbl_tipoDocumento.setBounds(-10, 60, 120, 14);
 
         lbl_nroDocumento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_nroDocumento.setText("Número:");
-        add(lbl_nroDocumento);
-        lbl_nroDocumento.setBounds(190, 60, 50, 14);
 
         lbl_FechaNacimiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_FechaNacimiento.setText("Fecha Nacimiento:");
-        add(lbl_FechaNacimiento);
-        lbl_FechaNacimiento.setBounds(10, 190, 120, 15);
 
         lbl_eMail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_eMail.setText("E-mail:");
-        add(lbl_eMail);
-        lbl_eMail.setBounds(10, 230, 120, 14);
 
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
             }
         });
-        add(txt_nombre);
-        txt_nombre.setBounds(150, 100, 300, 20);
 
         txt_apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_apellidoActionPerformed(evt);
             }
         });
-        add(txt_apellido);
-        txt_apellido.setBounds(150, 140, 300, 20);
 
         txt_eMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_eMailActionPerformed(evt);
             }
         });
-        add(txt_eMail);
-        txt_eMail.setBounds(150, 230, 300, 20);
 
         cmb_tipoDocumento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(cmb_tipoDocumento);
-        cmb_tipoDocumento.setBounds(120, 60, 60, 20);
 
         date_fechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         date_fechaNacimiento.setText("dd/mm/yyyy");
-        add(date_fechaNacimiento);
-        date_fechaNacimiento.setBounds(150, 190, 300, 20);
 
         txt_nroDocumento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        add(txt_nroDocumento);
-        txt_nroDocumento.setBounds(250, 60, 130, 20);
 
         btn_validar.setText("Validar");
         btn_validar.addActionListener(new java.awt.event.ActionListener() {
@@ -136,8 +111,68 @@ public class PanelInvestigador extends javax.swing.JPanel {
                 btn_validarActionPerformed(evt);
             }
         });
-        add(btn_validar);
-        btn_validar.setBounds(390, 60, 65, 23);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lbl_tipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(cmb_tipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lbl_nroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txt_nroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btn_validar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(date_fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_eMail, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(txt_eMail, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_tipoDocumento)
+                    .addComponent(cmb_tipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_nroDocumento)
+                    .addComponent(txt_nroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_validar))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_apellido)
+                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date_fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_eMail)
+                    .addComponent(txt_eMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

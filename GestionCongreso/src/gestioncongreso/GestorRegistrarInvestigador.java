@@ -9,7 +9,7 @@ public class GestorRegistrarInvestigador {
     private Connection con;
     private ResultSet res ;
     private Statement stm;
-    private GUI.PantallaRegistrarInvestigador2 pantalla;
+    private GUI2.PantallaRegistrarInvestigador2 pantalla;
     private String nombreInvestigador;
     private String apellidoInvestigador;
     private String facultadInvestigador;
@@ -20,11 +20,11 @@ public class GestorRegistrarInvestigador {
     private java.sql.Date fechaNacimiento;
     private ArrayList<CompuestoLugares> listaCompuesto;
     
-    public void registrarInvestigador(GUI.PantallaRegistrarInvestigador2 p) throws SQLException
+    public void registrarInvestigador(GUI2.PantallaRegistrarInvestigador2 p) throws SQLException
     {
         pantalla=p;
         pantalla.mostrarTiposDocumentos(buscarTipoDocumento());
-        pantalla.solicitarSeleccionFechaNacimiento();
+        //pantalla.solicitarSeleccionFechaNacimiento();
         setFechaActual();
         getFechaActual();     
         if(validarFechaNacimiento());
@@ -116,7 +116,7 @@ public class GestorRegistrarInvestigador {
         setTipoDocumento(tipoDoc);
         
     }
-   private boolean validarInvestigador(int nroDoc,String tipoDoc) throws SQLException{
+   public boolean validarInvestigador(int nroDoc,String tipoDoc) throws SQLException{
        
          try{
         con=DataBase.getConnection();
@@ -151,9 +151,9 @@ public class GestorRegistrarInvestigador {
     }
     
     public List cargarDatos(){
-        List datos=null;
+        List datos=new List();
         int nivel = 1;
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 5; i++) {
             buscar(nivel,datos);
         }
         return datos;

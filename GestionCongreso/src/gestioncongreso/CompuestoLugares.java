@@ -142,7 +142,7 @@ public class CompuestoLugares implements IEstructuraLugares{
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        } 
         return contador;
     }
     //PARA UNIVERSIDAD
@@ -191,7 +191,6 @@ public class CompuestoLugares implements IEstructuraLugares{
     
     
     public int buscarID(String nombre,String padre){
-        System.out.println("Buscar id");
         int i=0;
         try{
         con=DataBase.getConnection();
