@@ -19,17 +19,16 @@ public class GestorRegistrarInvestigador {
     private java.sql.Date fechaActual;
     private java.sql.Date fechaNacimiento;
     private ArrayList<CompuestoLugares> listaCompuesto;
+    
     public void registrarInvestigador(GUI.PantallaRegistrarInvestigador2 p) throws SQLException
     {
         pantalla=p;
         pantalla.mostrarTiposDocumentos(buscarTipoDocumento());
-        if(validarInvestigador(nroDocumento,tipoDocumento))
-            pantalla.solicitarSeleccionFechaNacimiento();
+        pantalla.solicitarSeleccionFechaNacimiento();
         setFechaActual();
-        getFechaActual();
-        System.out.println(getFechaActual());
-        
+        getFechaActual();     
         if(validarFechaNacimiento());
+        cargarDatos();
             
         
         
@@ -150,23 +149,61 @@ public class GestorRegistrarInvestigador {
     public boolean validarFechaNacimiento(){
         return fechaNacimiento.before(fechaActual);
     }
-    public void buscarUniverdidades(){
+    
+    public List cargarDatos(){
+        List datos=null;
+        int nivel = 1;
+        for (int i = 1; i < 6; i++) {
+            buscar(nivel,datos);
+        }
+        return datos;
+    }
+    public void buscarUniverdidades() throws SQLException{
        
          try{
              
         con=DataBase.getConnection();
-        stm = con.createStatement();
-        
+        stm = con.createStatement();        
         res=stm.executeQuery("SELECT * FROM Universidad");
-        //CompuestoLugares comp=new CompuestoLugares(res.getString("nombre_universidad"),1);
+        
         while(res.next()){
-            
+            //CompuestoLugares comp=new CompuestoLugares(res.getString("nombre_universidad"),1);
 
         }
         }catch(Exception e){
             System.out.println(e.getMessage());
-        }
+        } finally {
+             con.close();
+         }
        
+    }
+    
+    public List buscar(int nivel,List datos){
+      String compuesto = "UNIVERSIDAD",descripcion,nombre;
+      switch(nivel){
+          case 2: compuesto = "FACULTAD";
+              break;
+          case 3: compuesto = "CENTRO_INVESTIGACION";
+              break;
+          case 4: compuesto = "GRUPO_INVESTIGACION";
+              break;
+              }
+      try{
+        con = DataBase.getConnection();
+        stm = con.createStatement();
+        res=stm.executeQuery("SELECT * FROM "+compuesto);
+        while(res.next()){
+            descripcion = res.getString("DESCRIPCION_"+compuesto);
+            nombre = res.getString("NOMBRE_"+compuesto);
+            CompuestoLugares nuevo = new CompuestoLugares(descripcion,nombre,nivel);
+            datos.add(nuevo);
+            
+        }
+        
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+      return datos;
     }
     
 }

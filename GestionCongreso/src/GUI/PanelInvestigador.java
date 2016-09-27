@@ -20,6 +20,7 @@ public class PanelInvestigador extends javax.swing.JPanel {
      */
     public PanelInvestigador() {
         initComponents();
+        date_fechaNacimiento.enableInputMethods(false);
     }
 
     public void mostrarTiposDocumentos(ArrayList lista){

@@ -29,6 +29,10 @@ public class CompuestoLugares implements IEstructuraLugares{
     public CompuestoLugares(){
         
     }
+    
+    public CompuestoLugares(String n){
+        nombre=n;
+    }
         
     @Override
     public void agregarComponentes(IEstructuraLugares a) {
@@ -41,7 +45,7 @@ public class CompuestoLugares implements IEstructuraLugares{
         
         
         if (a != null) {
-            //String especificacion = "WHERE NOMBRE IS LIKE "+a.getNombre();
+              
             switch (niv) {
                 case 2://FACULTAD
                     s = new String[contarElementos("FACULTAD",a.getNombre())];
@@ -193,7 +197,7 @@ public class CompuestoLugares implements IEstructuraLugares{
         con=DataBase.getConnection();
         stm = con.createStatement();        
         res=stm.executeQuery("SELECT * FROM "+nombre.toUpperCase()+" WHERE NOMBRE LIKE "+padre.toUpperCase());
-        System.out.println(res.getString("ID"));
+        System.out.println(res.getString(1));
         i = res.getInt(1);
         con.close();
         }catch(Exception e){
