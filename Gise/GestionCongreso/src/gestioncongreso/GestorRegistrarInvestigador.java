@@ -80,6 +80,7 @@ public class GestorRegistrarInvestigador {
         Calendar d= Calendar.getInstance();
         long fecha = d.getTimeInMillis();
         fechaActual= new java.sql.Date(fecha);
+        System.out.println("Fecha Actual: "+fechaActual);
         
     }
     
@@ -105,34 +106,45 @@ public class GestorRegistrarInvestigador {
         return vectorTipoDoc;
     }
     public void tomarDatosInvestigador(String nombre, String apellido, String tipoDoc, long nroDoc) throws SQLException{
+        try{
         setNombreInvestigador(nombre);
         setApellidoInvestigador(apellido);
+        if(validarInvestigador(nroDoc,tipoDoc)){
         setNroDocumento(nroDoc);
         setTipoDocumento(tipoDoc);
-        validarInvestigador(nroDoc,tipoDoc);
+            System.out.println("TIRO UN SOUT");
+            pantalla.solicitarSeleccionFechaNacimiento();
+            } else {javax.swing.JOptionPane.showMessageDialog(pantalla, "Ya existe un investigador con ese Documento");}
+        }catch (SQLException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+        
     }
-   public void validarInvestigador(long nroDoc,String tipoDoc) throws SQLException{
+   public boolean validarInvestigador(long nroDoc,String tipoDoc) throws SQLException{
        
          try{
         con=DataBase.getConnection();
         stm = con.createStatement();        
         res=stm.executeQuery("SELECT * FROM Investigador I JOIN Tipo_Documento T ON I.id_tipo_documento=T.id_tipo_documento ");
         while(res.next()&&res!=null){           
-            
+            System.out.println(tipoDoc+" "+nroDoc);
             TipoDocumento t = new TipoDocumento(res.getString("abreviatura"),res.getString("nombre_tipo_documento"));
-            Investigador inv=new Investigador(res.getInt("NRO_DOCUMENTO_INVESTIGADOR"),t);
-            if(t!=null&&inv!=null)
-            if(inv.existeInvestigador(nroDoc, tipoDoc))
-                pantalla.solicitarSeleccionFechaNacimiento(); //existe
+            Investigador inv=new Investigador(res.getLong("NRO_DOCUMENTO_INVESTIGADOR"),t);
+            System.out.println(t.getAbreviatura()+" "+inv.getNroDocumento());
             
-        }
+            if(inv.existeInvestigador(nroDoc, tipoDoc)){
+                System.out.println("sergi roberto");
+                return false;
+                }
+            }
+        
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
          finally{
              con.close();
          }
-        
+        return true;
    } 
 
     /**
@@ -140,14 +152,14 @@ public class GestorRegistrarInvestigador {
      * @param fecha
      */
     public void tomarFechaNacimientoSeleccionada(java.sql.Date fecha){
-        try {
+        //try {
             setFechaNacimiento(fecha);
-            java.sql.Date fechaActual=getFechaActual();
+            setFechaActual();
             if (validarFechaNacimiento(fechaActual,fecha))
-                this.buscarUniverdidades();
-        } catch (SQLException ex) {
-            Logger.getLogger(GestorRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                System.out.println("JOACO SOS CAGON");
+       // } catch (SQLException ex) {
+        //    Logger.getLogger(GestorRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
+        //}
                 
     }
     public boolean validarFechaNacimiento(java.sql.Date fechaActual,java.sql.Date fechaNacimiento){

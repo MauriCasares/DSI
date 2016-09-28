@@ -14,6 +14,8 @@ import javax.swing.DefaultComboBoxModel;
 import gestioncongreso.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
 /**
  *
  * @author Ochan12
@@ -36,7 +38,24 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         super("Registrar Investigador");
         initComponents();
         mostrarTiposDocumentos(buscarTipoDocumento());
-        gestor = new GestorRegistrarInvestigador();        
+        int contador=1916;
+       gestor = new GestorRegistrarInvestigador();
+       Object[] vectorDias = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+       Object[] vectorMeses = {1,2,3,4,5,6,7,8,9,10,11,12};
+       Object[] vectorAños = new Object[100];
+        for (int i = 0; i < vectorAños.length-1; i++) {
+            vectorAños[i] = contador;
+            contador++;
+        }
+       DefaultComboBoxModel modeloDia = new DefaultComboBoxModel(vectorDias);
+       DefaultComboBoxModel modeloMeses = new DefaultComboBoxModel(vectorMeses);
+       DefaultComboBoxModel modeloAños = new DefaultComboBoxModel(vectorAños);
+       cmb_dia.setModel(modeloDia);
+       cmb_mes.setModel(modeloMeses);
+       cmb_año.setModel(modeloAños);
+       cmb_dia.setEnabled(false);
+       cmb_mes.setEnabled(false);
+       cmb_año.setEnabled(false);
     }
     public void tomarNombreInvestigador()
     {
@@ -48,7 +67,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }
     public void tomarSeleccionTipoDocumento()
     {
-        tipoDocumento=cmb_dia.getSelectedItem().toString();
+        tipoDocumento=cmb_TipoDocumento1.getSelectedItem().toString();
     }
     public void tomarNumeroInvestigador()
     {
@@ -56,13 +75,28 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }
     public void mostrarTiposDocumentos(ArrayList lista){
         DefaultComboBoxModel modeloComboTipoDoc = new DefaultComboBoxModel(lista.toArray());
-        cmb_dia.setModel(modeloComboTipoDoc);
+        cmb_TipoDocumento1.setModel(modeloComboTipoDoc);
     }
     public void tomarSeleccionFechaNacimiento(){
-        dia= cmb_dia.getSelectedIndex()-1;
-        mes=cmb_mes.getSelectedIndex()-1;
-        año=cmb_año.getSelectedIndex()-1;        
+        dia = Integer.parseInt(cmb_dia.getSelectedItem().toString());
+        mes = Integer.parseInt(cmb_mes.getSelectedItem().toString())-1;
+        año = Integer.parseInt(cmb_año.getSelectedItem().toString());        
     }
+    
+    private void setFechaNacimiento(int d, int m, int a)
+    {
+       Calendar cal=new GregorianCalendar();
+        cal.set(Calendar.YEAR, a);
+        cal.set(Calendar.MONTH, m);
+        cal.set(Calendar.DAY_OF_MONTH, d);
+        long f = cal.getTimeInMillis();
+        
+        fechaNacimiento = new java.sql.Date(f);
+        
+        
+        System.out.println(fechaNacimiento);
+    }
+    
     private ArrayList buscarTipoDocumento()
     {
         ArrayList vectorTipoDoc = new ArrayList();
@@ -87,7 +121,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     
     private void solicitarSeleccionFechaDeNacimiento()
     {
-        
+       cmb_dia.setEnabled(true);
+       cmb_mes.setEnabled(true);
+       cmb_año.setEnabled(true);
+        System.out.println("LOS HABILITE");
     }
     
     @SuppressWarnings("unchecked")
@@ -105,14 +142,17 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txt_Nombre = new javax.swing.JTextField();
-        txt_Apellido = new javax.swing.JTextField();
         txt_Mail = new javax.swing.JTextField();
         btn_Siguiente1 = new javax.swing.JButton();
         cmb_TipoDocumento1 = new javax.swing.JComboBox();
         cmb_mes = new javax.swing.JComboBox();
         cmb_año = new javax.swing.JComboBox();
         btn_validar = new javax.swing.JButton();
-        DatosAcat = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txt_Apellido = new javax.swing.JTextField();
+        DatosAcademicos = new javax.swing.JPanel();
         lbl_Universidad = new javax.swing.JLabel();
         lbl_Facultad = new javax.swing.JLabel();
         lbl_CentroInvestigacion = new javax.swing.JLabel();
@@ -141,7 +181,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
-        setPreferredSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(500, 400));
 
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(420, 320));
 
@@ -187,83 +227,116 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Día");
+
+        jLabel6.setText("Mes");
+
+        jLabel11.setText("Año");
+
         javax.swing.GroupLayout DatosPersonalesLayout = new javax.swing.GroupLayout(DatosPersonales);
         DatosPersonales.setLayout(DatosPersonalesLayout);
         DatosPersonalesLayout.setHorizontalGroup(
             DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatosPersonalesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
-                        .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbl_Nombre)
-                            .addComponent(jLabel2)
-                            .addComponent(lbl_TipoDocumento)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DatosPersonalesLayout.createSequentialGroup()
-                                .addComponent(cmb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmb_año, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(DatosPersonalesLayout.createSequentialGroup()
-                                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txt_Mail, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DatosPersonalesLayout.createSequentialGroup()
-                                        .addComponent(cmb_TipoDocumento1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_Numero, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
-                                    .addComponent(txt_Apellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_Nombre, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_validar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosPersonalesLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_Siguiente1)))
-                .addContainerGap())
+                .addGap(60, 60, 60)
+                .addComponent(lbl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txt_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lbl_TipoDocumento)
+                .addGap(4, 4, 4)
+                .addComponent(cmb_TipoDocumento1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btn_validar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel3)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(cmb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(cmb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(cmb_año, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jLabel4)
+                .addGap(4, 4, 4)
+                .addComponent(txt_Mail, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                .addGap(328, 328, 328)
+                .addComponent(btn_Siguiente1))
         );
         DatosPersonalesLayout.setVerticalGroup(
             DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatosPersonalesLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_Nombre)
-                    .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_TipoDocumento)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_TipoDocumento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lbl_Nombre))
+                    .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2))
+                    .addComponent(txt_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(lbl_TipoDocumento))
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(cmb_TipoDocumento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel1))
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_validar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                    .addComponent(cmb_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel11))))
+                .addGap(19, 19, 19)
+                .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DatosPersonalesLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4))
                     .addComponent(txt_Mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(btn_Siguiente1)
-                .addContainerGap())
+                .addGap(44, 44, 44)
+                .addComponent(btn_Siguiente1))
         );
 
         jTabbedPane1.addTab("Datos Personales", DatosPersonales);
 
-        DatosAcat.setPreferredSize(new java.awt.Dimension(420, 320));
+        DatosAcademicos.setPreferredSize(new java.awt.Dimension(420, 320));
 
         lbl_Universidad.setText("Universidad:");
 
@@ -290,73 +363,76 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         lbl_cargarProvincia.setText("Aca va provincia que la sacamos de la facu");
 
         btn_Siguiente2.setText("Siguiente");
+        btn_Siguiente2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Siguiente2ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout DatosAcatLayout = new javax.swing.GroupLayout(DatosAcat);
-        DatosAcat.setLayout(DatosAcatLayout);
-        DatosAcatLayout.setHorizontalGroup(
-            DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DatosAcatLayout.createSequentialGroup()
-                .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DatosAcatLayout.createSequentialGroup()
+        javax.swing.GroupLayout DatosAcademicosLayout = new javax.swing.GroupLayout(DatosAcademicos);
+        DatosAcademicos.setLayout(DatosAcademicosLayout);
+        DatosAcademicosLayout.setHorizontalGroup(
+            DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DatosAcademicosLayout.createSequentialGroup()
+                .addGroup(DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DatosAcademicosLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(lbl_Universidad)
                         .addGap(10, 10, 10)
                         .addComponent(cmb_Universidad, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DatosAcatLayout.createSequentialGroup()
+                    .addGroup(DatosAcademicosLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(lbl_Facultad)
                         .addGap(15, 15, 15)
                         .addComponent(cmb_Facultad, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DatosAcatLayout.createSequentialGroup()
+                    .addGroup(DatosAcademicosLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(lbl_CentroInvestigacion)
                         .addGap(11, 11, 11)
                         .addComponent(cmb_CentroInvestigacion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DatosAcatLayout.createSequentialGroup()
+                    .addGroup(DatosAcademicosLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(lbl_GrupoInvestigacion)
                         .addGap(15, 15, 15)
                         .addComponent(cmb_GrupoInvestigacion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DatosAcatLayout.createSequentialGroup()
+                    .addGroup(DatosAcademicosLayout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(lbl_Ciudad)
                         .addGap(13, 13, 13)
                         .addComponent(lbl_cargarCiudad))
-                    .addGroup(DatosAcatLayout.createSequentialGroup()
+                    .addGroup(DatosAcademicosLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(lbl_Provincia)
                         .addGap(13, 13, 13)
                         .addComponent(lbl_cargarProvincia)))
                 .addGap(18, 18, 18))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosAcatLayout.createSequentialGroup()
-                .addComponent(btn_Siguiente2)
-                .addGap(0, 0, 0))
+            .addComponent(btn_Siguiente2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-        DatosAcatLayout.setVerticalGroup(
-            DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DatosAcatLayout.createSequentialGroup()
+        DatosAcademicosLayout.setVerticalGroup(
+            DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DatosAcademicosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Universidad)
                     .addComponent(cmb_Universidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Facultad)
                     .addComponent(cmb_Facultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_CentroInvestigacion)
                     .addComponent(cmb_CentroInvestigacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_GrupoInvestigacion)
                     .addComponent(cmb_GrupoInvestigacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Ciudad)
                     .addComponent(lbl_cargarCiudad))
                 .addGap(16, 16, 16)
-                .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosAcademicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Provincia)
                     .addComponent(lbl_cargarProvincia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
@@ -364,7 +440,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Datos Académicos", DatosAcat);
+        jTabbedPane1.addTab("Datos Académicos", DatosAcademicos);
 
         DatosTitulo.setPreferredSize(new java.awt.Dimension(420, 320));
 
@@ -452,10 +528,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_NumeroActionPerformed
-
     private void btn_validarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_validarActionPerformed
         try {
             // TODO add your handling code here:
@@ -471,9 +543,24 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_validarActionPerformed
 
     private void btn_Siguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Siguiente1ActionPerformed
-        // TODO add your handling code here:
-        tomarSeleccionUniversidad();
+        
+        try{
+            this.tomarSeleccionFechaNacimiento();
+            setFechaNacimiento(dia, mes, año);
+            gestor.tomarFechaNacimientoSeleccionada(fechaNacimiento);
+            DatosPersonales.setVisible(false);
+            DatosAcademicos.setVisible(true);
+            }catch(Exception e){ System.out.println("Aguante talleres "+e.getMessage()); }
+        
     }//GEN-LAST:event_btn_Siguiente1ActionPerformed
+
+    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NumeroActionPerformed
+
+    private void btn_Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Siguiente2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Siguiente2ActionPerformed
     private void tomarSeleccionUniversidad(){
         
     }
@@ -482,8 +569,9 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
          pantalla.setVisible(true);
     }
     public void solicitarSeleccionFechaNacimiento(){
-        this.tomarSeleccionFechaNacimiento();
-        gestor.tomarFechaNacimientoSeleccionada(fechaNacimiento);
+        this.solicitarSeleccionFechaDeNacimiento();
+        
+        //gestor.tomarFechaNacimientoSeleccionada(fechaNacimiento);
     }
     
     /**
@@ -532,7 +620,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel DatosAcat;
+    private javax.swing.JPanel DatosAcademicos;
     private javax.swing.JPanel DatosPersonales;
     private javax.swing.JPanel DatosTitulo;
     private javax.swing.JButton btn_Siguiente1;
@@ -555,9 +643,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JComboBox cmb_mes1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
