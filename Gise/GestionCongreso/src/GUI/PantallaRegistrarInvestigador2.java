@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.*; 
 
 public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     PanelInvestigador p_investigador;

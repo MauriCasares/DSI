@@ -140,6 +140,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         cmb_año1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(500, 500));
+
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(420, 320));
+
+        DatosPersonales.setPreferredSize(new java.awt.Dimension(420, 320));
 
         lbl_TipoDocumento.setText("Tipo de Documento:");
 
@@ -175,7 +181,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         cmb_año.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btn_validar.setText("Validar");
-        btn_validar.setActionCommand("Validar");
         btn_validar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_validarActionPerformed(evt);
@@ -217,7 +222,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                                     .addComponent(txt_Apellido, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_Nombre, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_validar, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))))
+                                .addComponent(btn_validar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosPersonalesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_Siguiente1)))
@@ -251,12 +256,14 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                 .addGroup(DatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(txt_Mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(btn_Siguiente1)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Datos Personales", DatosPersonales);
+
+        DatosAcat.setPreferredSize(new java.awt.Dimension(420, 320));
 
         lbl_Universidad.setText("Universidad:");
 
@@ -323,7 +330,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosAcatLayout.createSequentialGroup()
                 .addComponent(btn_Siguiente2)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         DatosAcatLayout.setVerticalGroup(
             DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,12 +359,14 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                 .addGroup(DatosAcatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Provincia)
                     .addComponent(lbl_cargarProvincia))
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(btn_Siguiente2)
-                .addGap(50, 50, 50))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Datos Académicos", DatosAcat);
+
+        DatosTitulo.setPreferredSize(new java.awt.Dimension(420, 320));
 
         jLabel7.setText("Tipo de Título:");
 
@@ -403,7 +412,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmb_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosTituloLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Siguiente3)
@@ -431,25 +440,14 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                         .addComponent(cmb_dia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmb_mes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(btn_Siguiente3)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Títulos", DatosTitulo);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
