@@ -21,9 +21,9 @@ import java.util.Calendar;
  * @author Ochan12
  */
 public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
-    private Connection con;
-    private ResultSet res;
-    private Statement stm;
+//    private Connection con;
+//    private ResultSet res;
+//    private Statement stm;
     private static GestorRegistrarInvestigador gestor;
     private String nombreInvestigador;
     private String apellidoInvestigador;
@@ -37,7 +37,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
         initComponents();
-        mostrarTiposDocumentos(buscarTipoDocumento());
+//        mostrarTiposDocumentos(buscarTipoDocumento());
         int contador=1916;
        gestor = new GestorRegistrarInvestigador();
        Object[] vectorDias = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
@@ -97,28 +97,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         System.out.println(fechaNacimiento);
     }
     
-    private ArrayList buscarTipoDocumento()
-    {
-        ArrayList vectorTipoDoc = new ArrayList();
-        int i =0;
-         try{
-        con=DataBase.getConnection();
-        stm = con.createStatement();
-        
-        res=stm.executeQuery("SELECT * FROM Tipo_Documento");
-        while(res.next()){
-            
-            TipoDocumento t = new TipoDocumento(res.getString(2),res.getString(1));
-            vectorTipoDoc.add(t.getAbreviatura());
-                       
-        }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-         System.out.println("los encontro");
-        return vectorTipoDoc;
-    }
-    
+      
     private void solicitarSeleccionFechaDeNacimiento()
     {
        cmb_dia.setEnabled(true);
@@ -180,6 +159,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
+        setName("Registrar Investigador"); // NOI18N
         setPreferredSize(new java.awt.Dimension(500, 400));
 
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(420, 320));
@@ -189,6 +169,11 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         lbl_TipoDocumento.setText("Tipo de Documento:");
 
         cmb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_diaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nº");
 
@@ -555,7 +540,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             
             jTabbedPane1.setSelectedIndex(1);
             
-            gestor.buscarUniverdidades();
             }catch(Exception e){ System.out.println("Aguante talleres "+e.getMessage()); }
         
     }//GEN-LAST:event_btn_Siguiente1ActionPerformed
@@ -569,15 +553,11 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Siguiente2ActionPerformed
 
     private void cmb_UniversidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_UniversidadActionPerformed
-        try {
-            
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(PantallaRegistrarInvestigador2.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_cmb_UniversidadActionPerformed
+
+    private void cmb_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_diaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_diaActionPerformed
     private void tomarSeleccionUniversidad(){
         
     }

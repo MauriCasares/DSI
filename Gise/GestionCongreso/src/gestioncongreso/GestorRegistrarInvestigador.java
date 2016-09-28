@@ -109,12 +109,13 @@ public class GestorRegistrarInvestigador {
         try{
         setNombreInvestigador(nombre);
         setApellidoInvestigador(apellido);
-        if(validarInvestigador(nroDoc,tipoDoc)){
-        setNroDocumento(nroDoc);
-        setTipoDocumento(tipoDoc);
+        if(validarInvestigador(nroDoc,tipoDoc))
+        {   //no existe
+            setNroDocumento(nroDoc);
+            setTipoDocumento(tipoDoc);
             System.out.println("TIRO UN SOUT");
             pantalla.solicitarSeleccionFechaNacimiento();
-            } else {javax.swing.JOptionPane.showMessageDialog(pantalla, "Ya existe un investigador con ese Documento");}
+        } else {javax.swing.JOptionPane.showMessageDialog(pantalla, "Ya existe un investigador con ese Documento");}
         }catch (SQLException ex) {
                         System.out.println(ex.getMessage());
                     }
@@ -134,7 +135,7 @@ public class GestorRegistrarInvestigador {
             
             if(inv.existeInvestigador(nroDoc, tipoDoc)){
                 System.out.println("sergi roberto");
-                return false;
+                return false; //existe
                 }
             }
         
@@ -156,10 +157,13 @@ public class GestorRegistrarInvestigador {
        // } catch (SQLException ex) {
         //    Logger.getLogger(GestorRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
         //}
-                
+             this.buscarUniversidades();
     }
     public boolean validarFechaNacimiento(java.sql.Date fechaActual,java.sql.Date fechaNacimiento){
         return fechaNacimiento.before(fechaActual);
+    }
+    public void buscarUniversidades(){
+        
     }
     
     public List cargarDatos(){
