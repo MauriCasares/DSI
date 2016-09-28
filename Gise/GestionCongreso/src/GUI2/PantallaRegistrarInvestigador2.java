@@ -33,6 +33,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private int mes;
     private int año;
     private java.sql.Date fechaNacimiento;
+    private CompuestoLugares universidad;
     
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
@@ -554,8 +555,8 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             gestor.tomarFechaNacimientoSeleccionada(fechaNacimiento);
             
             jTabbedPane1.setSelectedIndex(1);
-            
-            gestor.buscarUniverdidades();
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel(gestor.buscarUniverdidades());
+            cmb_Universidad.setModel(modelo);
             }catch(Exception e){ System.out.println("Aguante talleres "+e.getMessage()); }
         
     }//GEN-LAST:event_btn_Siguiente1ActionPerformed
@@ -569,18 +570,13 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Siguiente2ActionPerformed
 
     private void cmb_UniversidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_UniversidadActionPerformed
-        try {
             
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(PantallaRegistrarInvestigador2.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_cmb_UniversidadActionPerformed
+    
     private void tomarSeleccionUniversidad(){
         
     }
+    
     private static void habilitarPantalla( PantallaRegistrarInvestigador2 pantalla)
     {
          pantalla.setVisible(true);

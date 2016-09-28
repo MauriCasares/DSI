@@ -122,7 +122,7 @@ public class Investigador implements IEstructuraLugares{
     public void quitarComponente(IEstructuraLugares a) {}
     
     @Override
-    public String[] getNombreJerarquia(int niv, CompuestoLugares a){return null;}
+    public CompuestoLugares[] getNombreJerarquia(int niv, CompuestoLugares a){return null;}
 
     public IEstructuraLugares[] obtenerHijo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -170,24 +170,9 @@ public class GestorRegistrarInvestigador {
         }
         return datos;
     }
-    public void buscarUniverdidades() throws SQLException{
-       
-         try{
-             
-        con=DataBase.getConnection();
-        stm = con.createStatement();        
-        res=stm.executeQuery("SELECT * FROM Universidad");
-        
-        while(res.next()){
-            //CompuestoLugares comp=new CompuestoLugares(res.getString("nombre_universidad"),1);
-
-        }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        } finally {
-             con.close();
-         }
-       
+    public CompuestoLugares[] buscarUniverdidades() throws SQLException{
+      CompuestoLugares C = new CompuestoLugares();  
+      return C.getNombreJerarquia(1, null);
     }
     
     public List buscar(int nivel,List datos){
