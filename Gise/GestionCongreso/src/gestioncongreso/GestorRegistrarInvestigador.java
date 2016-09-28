@@ -147,10 +147,6 @@ public class GestorRegistrarInvestigador {
         return true;
    } 
 
-    /**
-     *
-     * @param fecha
-     */
     public void tomarFechaNacimientoSeleccionada(java.sql.Date fecha){
         //try {
             setFechaNacimiento(fecha);

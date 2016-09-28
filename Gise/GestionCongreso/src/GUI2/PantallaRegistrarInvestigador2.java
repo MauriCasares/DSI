@@ -124,7 +124,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
        cmb_dia.setEnabled(true);
        cmb_mes.setEnabled(true);
        cmb_año.setEnabled(true);
-        System.out.println("LOS HABILITE");
     }
     
     @SuppressWarnings("unchecked")
@@ -351,6 +350,11 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         lbl_Provincia.setText("Provincia:");
 
         cmb_Universidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
+        cmb_Universidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_UniversidadActionPerformed(evt);
+            }
+        });
 
         cmb_Facultad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
 
@@ -538,7 +542,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             gestor.tomarDatosInvestigador(nombreInvestigador, apellidoInvestigador , tipoDocumento, numeroDocumento);
 
         } catch (SQLException ex) {
-            Logger.getLogger(PantallaRegistrarInvestigador2.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btn_validarActionPerformed
 
@@ -548,8 +552,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             this.tomarSeleccionFechaNacimiento();
             setFechaNacimiento(dia, mes, año);
             gestor.tomarFechaNacimientoSeleccionada(fechaNacimiento);
-            DatosPersonales.setVisible(false);
-            DatosAcademicos.setVisible(true);
+            
+            jTabbedPane1.setSelectedIndex(1);
+            
+            gestor.buscarUniverdidades();
             }catch(Exception e){ System.out.println("Aguante talleres "+e.getMessage()); }
         
     }//GEN-LAST:event_btn_Siguiente1ActionPerformed
@@ -561,6 +567,17 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private void btn_Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Siguiente2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_Siguiente2ActionPerformed
+
+    private void cmb_UniversidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_UniversidadActionPerformed
+        try {
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PantallaRegistrarInvestigador2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmb_UniversidadActionPerformed
     private void tomarSeleccionUniversidad(){
         
     }

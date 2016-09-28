@@ -441,6 +441,9 @@
                   <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {  })" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmb_UniversidadActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmb_Facultad">
               <Properties>
