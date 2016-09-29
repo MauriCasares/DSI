@@ -40,7 +40,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
         initComponents();
-//        mostrarTiposDocumentos(buscarTipoDocumento());
         int contador=1916;
        gestor = new GestorRegistrarInvestigador();
        Object[] vectorDias = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};

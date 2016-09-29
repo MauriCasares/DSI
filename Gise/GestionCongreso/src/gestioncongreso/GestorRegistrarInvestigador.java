@@ -3,10 +3,7 @@ import java.util.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-/**import java.util.*;
- *
- * @author Gisela
- */
+
 public class GestorRegistrarInvestigador {
     private Connection con;
     private ResultSet res ;
@@ -25,9 +22,10 @@ public class GestorRegistrarInvestigador {
     private String facultad;
     private String centroInvestigacion;
     private String grupoInvestigacion;
+    
     public void registrarInvestigador(GUI2.PantallaRegistrarInvestigador2 p) throws SQLException
     {
-        pantalla=p;
+        pantalla = p;
         pantalla.mostrarTiposDocumentos(buscarTipoDocumento());              
     }
     
@@ -108,6 +106,8 @@ public class GestorRegistrarInvestigador {
          System.out.println("los encontro");
         return vectorTipoDoc;
     }
+    
+    
     public void tomarDatosInvestigador(String nombre, String apellido, String tipoDoc, long nroDoc) throws SQLException{
         try{
         setNombreInvestigador(nombre);

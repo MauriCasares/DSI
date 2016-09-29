@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package gestioncongreso;
 
-/**
- *
- * @author Gisela
- */
 public class Ciudad {
     private int CP;
     private String nombre;
@@ -34,9 +24,6 @@ public class Ciudad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-//    public Provincia conocerProvincia(){
-//        
-//    }
 
     @Override
     public String toString() {

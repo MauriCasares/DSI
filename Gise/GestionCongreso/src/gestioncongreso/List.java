@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioncongreso;
 
-/**
- *
- * @author Ochan12
- * @param <E>
- */
 public class List<E extends IEstructuraLugares> {
     private Nodo<E> frente;
     private int size;

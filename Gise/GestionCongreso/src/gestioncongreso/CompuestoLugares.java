@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioncongreso;
 import java.util.Date;
 import java.sql.*;
 import java.util.*;
-/**
- *
- * @author Ochan12
- */
+
 public class CompuestoLugares implements IEstructuraLugares{
     
     private String descripcion, nombre;
@@ -221,9 +213,9 @@ public class CompuestoLugares implements IEstructuraLugares{
     public int buscarID(String nombre,String padre){
         int i=0;
         try{
-        con=DataBase.getConnection();
+        con = DataBase.getConnection();
         stm = con.createStatement();        
-        res=stm.executeQuery("SELECT * FROM "+nombre.toUpperCase()+" WHERE NOMBRE LIKE "+padre.toUpperCase());
+        res = stm.executeQuery("SELECT * FROM "+nombre.toUpperCase()+" WHERE NOMBRE LIKE "+padre.toUpperCase());
         System.out.println(res.getString(1));
         i = res.getInt(1);
         con.close();
@@ -235,7 +227,7 @@ public class CompuestoLugares implements IEstructuraLugares{
 
     @Override
     public IEstructuraLugares[] obtenerHijo() {
-       return null; //To change body of generated methods, choose Tools | Templates.
+       return null; 
     }
     
         

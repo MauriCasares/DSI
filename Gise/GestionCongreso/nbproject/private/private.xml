@@ -3,11 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gisela/Documents/UTN/2016/DSI/PPAI/implementacion/DSI/Gise/GestionCongreso/src/gestioncongreso/IEstructuraLugares.java</file>
-            <file>file:/C:/Users/Gisela/Documents/UTN/2016/DSI/PPAI/implementacion/DSI/Gise/GestionCongreso/src/GUI2/PantallaRegistrarInvestigador2.java</file>
-            <file>file:/C:/Users/Gisela/Documents/UTN/2016/DSI/PPAI/implementacion/DSI/Gise/GestionCongreso/src/gestioncongreso/GestorRegistrarInvestigador.java</file>
-            <file>file:/C:/Users/Gisela/Documents/UTN/2016/DSI/PPAI/implementacion/DSI/Gise/GestionCongreso/src/gestioncongreso/Investigador.java</file>
-            <file>file:/C:/Users/Gisela/Documents/UTN/2016/DSI/PPAI/implementacion/DSI/Gise/GestionCongreso/src/gestioncongreso/CompuestoLugares.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/CategoriaInvestigacion.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/Investigador.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/DataBase.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/Ciudad.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/GUI2/PantallaRegistrarInvestigador2.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/Nodo.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/TipoDocumento.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/Sesion.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/AreaInvestigacion.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/CompuestoLugares.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/IEstructuraLugares.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/List.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/Provincia.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/GestorRegistrarInvestigador.java</file>
+            <file>file:/C:/Users/LaWebStore/Documents/GitHub/DSI/Gise/GestionCongreso/src/gestioncongreso/Empleado.java</file>
         </group>
     </open-files>
 </project-private>
