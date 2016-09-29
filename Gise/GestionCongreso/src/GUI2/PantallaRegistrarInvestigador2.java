@@ -193,7 +193,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
         lbl_TipoDocumento.setText("Tipo de Documento:");
 
-        cmb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_dia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_diaActionPerformed(evt);
@@ -222,12 +221,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                 btn_Siguiente1ActionPerformed(evt);
             }
         });
-
-        cmb_TipoDocumento1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmb_año.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btn_validar.setText("Validar");
         btn_validar.addActionListener(new java.awt.event.ActionListener() {
@@ -369,13 +362,15 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DatosAcademicos.add(lbl_GrupoInvestigacion);
         lbl_GrupoInvestigacion.setBounds(10, 110, 120, 14);
 
+        lbl_Ciudad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_Ciudad.setText("Ciudad:");
         DatosAcademicos.add(lbl_Ciudad);
-        lbl_Ciudad.setBounds(90, 190, 37, 14);
+        lbl_Ciudad.setBounds(10, 220, 120, 14);
 
+        lbl_Provincia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_Provincia.setText("Provincia:");
         DatosAcademicos.add(lbl_Provincia);
-        lbl_Provincia.setBounds(80, 220, 47, 14);
+        lbl_Provincia.setBounds(10, 190, 120, 14);
 
         cmb_Universidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_Universidad.addActionListener(new java.awt.event.ActionListener() {
@@ -384,7 +379,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_Universidad);
-        cmb_Universidad.setBounds(140, 20, 260, 20);
+        cmb_Universidad.setBounds(140, 15, 260, 20);
 
         cmb_Facultad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_Facultad.addActionListener(new java.awt.event.ActionListener() {
@@ -393,7 +388,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_Facultad);
-        cmb_Facultad.setBounds(140, 50, 260, 20);
+        cmb_Facultad.setBounds(140, 45, 260, 20);
 
         cmb_CentroInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_CentroInvestigacion.addActionListener(new java.awt.event.ActionListener() {
@@ -402,7 +397,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_CentroInvestigacion);
-        cmb_CentroInvestigacion.setBounds(140, 80, 260, 20);
+        cmb_CentroInvestigacion.setBounds(140, 75, 260, 20);
 
         cmb_GrupoInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_GrupoInvestigacion.addActionListener(new java.awt.event.ActionListener() {
@@ -411,7 +406,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_GrupoInvestigacion);
-        cmb_GrupoInvestigacion.setBounds(140, 110, 260, 20);
+        cmb_GrupoInvestigacion.setBounds(140, 105, 260, 20);
 
         btn_Siguiente2.setText("Siguiente");
         btn_Siguiente2.addActionListener(new java.awt.event.ActionListener() {
@@ -425,7 +420,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         lbl_areaInvesigacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_areaInvesigacion.setText("Área de Investigación:");
         DatosAcademicos.add(lbl_areaInvesigacion);
-        lbl_areaInvesigacion.setBounds(10, 152, 120, 14);
+        lbl_areaInvesigacion.setBounds(10, 150, 120, 14);
 
         cmb_AreaInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { }));
         cmb_AreaInvestigacion.addActionListener(new java.awt.event.ActionListener() {
@@ -434,7 +429,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_AreaInvestigacion);
-        cmb_AreaInvestigacion.setBounds(140, 149, 140, 20);
+        cmb_AreaInvestigacion.setBounds(140, 145, 140, 20);
 
         btn_AgregarTodas.setText("Agregar");
         btn_AgregarTodas.addActionListener(new java.awt.event.ActionListener() {
@@ -443,7 +438,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(btn_AgregarTodas);
-        btn_AgregarTodas.setBounds(320, 150, 80, 23);
+        btn_AgregarTodas.setBounds(320, 145, 80, 23);
 
         cmb_ciudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
         cmb_ciudad.addActionListener(new java.awt.event.ActionListener() {
@@ -452,7 +447,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_ciudad);
-        cmb_ciudad.setBounds(140, 190, 260, 20);
+        cmb_ciudad.setBounds(140, 215, 260, 20);
 
         cmb_provincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { }));
         cmb_provincia.addActionListener(new java.awt.event.ActionListener() {
@@ -461,7 +456,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_provincia);
-        cmb_provincia.setBounds(140, 220, 260, 20);
+        cmb_provincia.setBounds(140, 185, 260, 20);
 
         jTabbedPane1.addTab("Datos Académicos", DatosAcademicos);
 

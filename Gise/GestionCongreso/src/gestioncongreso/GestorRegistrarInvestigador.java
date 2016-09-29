@@ -315,6 +315,8 @@ public class GestorRegistrarInvestigador {
     private void buscarProvincia() {
         ArrayList vectorProvincia= new ArrayList();
         
+        String seleccion = "";
+        
         try {
             con = DataBase.getConnection();
             stm = con.createStatement();
@@ -323,6 +325,11 @@ public class GestorRegistrarInvestigador {
             while (res.next()) {
                 vectorProvincia.add(res.getString("NOMBRE_PROVINCIA"));
             }
+            
+            res = stm.executeQuery("SELECT NOMBRE_PROVINCIA FROM  FACULTAD F JOIN  CIUDAD C ON F.ID_CIUDAD = C.ID_CIUDAD JOIN PROVINCIA P ON P.ID_PROVINCIA = C.ID_PROVINCIA WHERE F.NOMBRE_FACULTAD = '"+ this.facultad +"'");
+            
+            seleccion = res.getString("NOMBRE_PROVINCIA");
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -333,6 +340,8 @@ public class GestorRegistrarInvestigador {
     private void buscarCiudad(String provincia) {
         ArrayList vectorCiudad= new ArrayList();
         
+        String seleccion = "";
+        
         try {
             con = DataBase.getConnection();
             stm = con.createStatement();
@@ -341,6 +350,13 @@ public class GestorRegistrarInvestigador {
             while (res.next()) {
                 vectorCiudad.add(res.getString("NOMBRE_CIUDAD"));
             }
+            
+            res = stm.executeQuery("SELECT NOMBRE_CIUDAD FROM CIUDAD C JOIN FACULTAD F ON F.ID_CIUDAD = C.ID_CIUDAD WHERE F.NOMBRE_FACULTAD = '"+this.facultad+"'");
+            
+            System.out.println(""+ facultad);
+            
+            seleccion = res.getString("NOMBRE_CIUDAD");
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
