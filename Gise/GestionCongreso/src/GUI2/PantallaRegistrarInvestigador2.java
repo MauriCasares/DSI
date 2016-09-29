@@ -79,6 +79,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DefaultComboBoxModel modeloComboTipoDoc = new DefaultComboBoxModel(lista.toArray());
         cmb_TipoDocumento1.setModel(modeloComboTipoDoc);
     }
+    public void mostrarAreasInvestigacion (ArrayList lista){
+        DefaultComboBoxModel modeloComboAreaInvestigacion = new DefaultComboBoxModel(lista.toArray());
+        cmb_AreaInvestigacion.setModel(modeloComboAreaInvestigacion);
+    }
     public void tomarSeleccionFechaNacimiento(){
         dia = Integer.parseInt(cmb_dia.getSelectedItem().toString());
         mes = Integer.parseInt(cmb_mes.getSelectedItem().toString())-1;

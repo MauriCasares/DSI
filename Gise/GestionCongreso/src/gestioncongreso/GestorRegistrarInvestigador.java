@@ -126,7 +126,7 @@ public class GestorRegistrarInvestigador {
                         System.out.println(ex.getMessage());
                     }
         
-    }
+        }
    public boolean validarInvestigador(long nroDoc,String tipoDoc) throws SQLException{
        
          try{
@@ -299,5 +299,30 @@ public class GestorRegistrarInvestigador {
         this.grupoInvestigacion=grupoInvestigacion;
         //this.buscarAreasInvestigacion();
     }
+    
+     private void buscarAreasInvestigacion()
+    {
+        ArrayList vectorAreaInvestigacion = new ArrayList();
+        int i =0;
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT * FROM Area_Investigacion");
+        while(res.next()){
+            
+            AreaInvestigacion t = new AreaInvestigacion(res.getString(3),res.getString(2));
+            vectorAreaInvestigacion.add(t.getNombre());
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
+        
+         pantalla.mostrarAreasInvestigacion (vectorAreaInvestigacion);
+    }
+     
+     
     
 }
