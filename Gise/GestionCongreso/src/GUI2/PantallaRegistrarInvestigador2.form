@@ -455,6 +455,9 @@
                   <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {  })" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmb_FacultadActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmb_CentroInvestigacion">
               <Properties>
@@ -462,6 +465,9 @@
                   <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {  })" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmb_CentroInvestigacionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmb_GrupoInvestigacion">
               <Properties>
@@ -469,6 +475,9 @@
                   <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {  })" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmb_GrupoInvestigacionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_cargarCiudad">
               <Properties>

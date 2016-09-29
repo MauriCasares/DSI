@@ -33,7 +33,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private int mes;
     private int año;
     private java.sql.Date fechaNacimiento;
-    
+    private String universidad;
+    private String facultad;
+    private String centroInvestigacion;
+    private String grupoInvestigacion;
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
         initComponents();
@@ -82,7 +85,18 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         mes = Integer.parseInt(cmb_mes.getSelectedItem().toString())-1;
         año = Integer.parseInt(cmb_año.getSelectedItem().toString());        
     }
-    
+    public void tomarSeleccionUniversidad(){
+        universidad=cmb_Universidad.getSelectedItem().toString();
+    }
+    public void tomarSeleccionFacultad(){
+        facultad=cmb_Facultad.getSelectedItem().toString();
+    }
+    private void tomarSeleccionCentroInvestigacion() {
+        centroInvestigacion=cmb_CentroInvestigacion.getSelectedItem().toString();
+    }
+     private void tomarSeleccionGrupoInvestigacion() {
+        grupoInvestigacion=cmb_GrupoInvestigacion.getSelectedItem().toString();
+    }
     private void setFechaNacimiento(int d, int m, int a)
     {
        Calendar cal=new GregorianCalendar();
@@ -342,10 +356,25 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         });
 
         cmb_Facultad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
+        cmb_Facultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_FacultadActionPerformed(evt);
+            }
+        });
 
         cmb_CentroInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
+        cmb_CentroInvestigacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_CentroInvestigacionActionPerformed(evt);
+            }
+        });
 
         cmb_GrupoInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
+        cmb_GrupoInvestigacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_GrupoInvestigacionActionPerformed(evt);
+            }
+        });
 
         lbl_cargarCiudad.setText("Aca va ciudad que la sacamos de la facu");
 
@@ -553,14 +582,32 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Siguiente2ActionPerformed
 
     private void cmb_UniversidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_UniversidadActionPerformed
+        this.tomarSeleccionUniversidad();
+        gestor.tomarUniversidadSeleccionada(universidad);
     }//GEN-LAST:event_cmb_UniversidadActionPerformed
 
     private void cmb_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_diaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmb_diaActionPerformed
-    private void tomarSeleccionUniversidad(){
-        
-    }
+
+    private void cmb_FacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_FacultadActionPerformed
+        // TODO add your handling code here:
+          this.tomarSeleccionFacultad();
+        gestor.tomarFacultadSeleccionada(facultad);
+    }//GEN-LAST:event_cmb_FacultadActionPerformed
+
+    private void cmb_CentroInvestigacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CentroInvestigacionActionPerformed
+        // TODO add your handling code here:
+         this.tomarSeleccionCentroInvestigacion();
+        gestor.tomarCentroInvestigacionSeleccionado(centroInvestigacion);
+    }//GEN-LAST:event_cmb_CentroInvestigacionActionPerformed
+
+    private void cmb_GrupoInvestigacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_GrupoInvestigacionActionPerformed
+        // TODO add your handling code here:ç
+        this.tomarSeleccionGrupoInvestigacion();
+        gestor.tomarGrupoInvestigacionSeleccionado(grupoInvestigacion);
+    }//GEN-LAST:event_cmb_GrupoInvestigacionActionPerformed
+    
     private static void habilitarPantalla( PantallaRegistrarInvestigador2 pantalla)
     {
          pantalla.setVisible(true);
@@ -665,4 +712,32 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Nombre;
     private javax.swing.JTextField txt_Numero;
     // End of variables declaration//GEN-END:variables
+
+    public void mostrarUniversidades(String[] nombreJerarquia) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DefaultComboBoxModel modeloComboUniversidades = new DefaultComboBoxModel(nombreJerarquia);
+        cmb_Universidad.setModel(modeloComboUniversidades);
+    }
+
+    public void mostrarFacultades(String[] nombreJerarquia) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DefaultComboBoxModel modeloComboFacultades = new DefaultComboBoxModel(nombreJerarquia);
+        cmb_Facultad.setModel(modeloComboFacultades);
+    }
+
+    public void mostrarCentrosDeInvestigacion(String[] nombreJerarquia) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DefaultComboBoxModel modeloComboCentros = new DefaultComboBoxModel(nombreJerarquia);
+        cmb_CentroInvestigacion.setModel(modeloComboCentros);
+    }
+
+    public void mostrarGruposDeInvestigacion(String[] nombreJerarquia) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DefaultComboBoxModel modeloComboGruposInvestigacion = new DefaultComboBoxModel(nombreJerarquia);
+        cmb_GrupoInvestigacion.setModel(modeloComboGruposInvestigacion);
+    }
+
+    
+
+    
 }

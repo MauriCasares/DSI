@@ -21,7 +21,10 @@ public class GestorRegistrarInvestigador {
     private java.sql.Date fechaActual;
     private java.sql.Date fechaNacimiento;
     private ArrayList<CompuestoLugares> listaCompuesto;
-    
+    private String universidad;
+    private String facultad;
+    private String centroInvestigacion;
+    private String grupoInvestigacion;
     public void registrarInvestigador(GUI2.PantallaRegistrarInvestigador2 p) throws SQLException
     {
         pantalla=p;
@@ -163,9 +166,22 @@ public class GestorRegistrarInvestigador {
         return fechaNacimiento.before(fechaActual);
     }
     public void buscarUniversidades(){
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
         
-    }
-    
+        res=stm.executeQuery("SELECT * FROM Universidades");
+        while(res.next()){
+            
+            CompuestoLugares compuesto = new CompuestoLugares();
+            pantalla.mostrarUniversidades(compuesto.getNombreJerarquia(1,null));
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
+    }  
     public List cargarDatos(){
         List datos=new List();
         int nivel = 1;
@@ -174,10 +190,10 @@ public class GestorRegistrarInvestigador {
         }
         return datos;
     }
-    public CompuestoLugares[] buscarUniverdidades() throws SQLException{
-      CompuestoLugares C = new CompuestoLugares();  
-      return C.getNombreJerarquia(1, null);
-    }
+//    public CompuestoLugares[] buscarUniverdidades() throws SQLException{
+//      CompuestoLugares C = new CompuestoLugares();  
+//      return C.getNombreJerarquia(1, null);
+//    }
     
     public List buscar(int nivel,List datos){
       String compuesto = "UNIVERSIDAD",descripcion,nombre;
@@ -205,6 +221,87 @@ public class GestorRegistrarInvestigador {
             System.out.println(e.getMessage());
         }
       return datos;
+    }
+
+    public void tomarUniversidadSeleccionada(String universidad) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.universidad=universidad;
+        this.buscarFacultadesDeUniversidad(universidad);
+    }
+
+    private void buscarFacultadesDeUniversidad(String universidad) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT * FROM Facultades WHERE universidad= "+universidad);
+        while(res.next()){
+            
+            CompuestoLugares compuesto = new CompuestoLugares();
+            pantalla.mostrarFacultades(compuesto.getNombreJerarquia(2,universidad));
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
+    }
+
+    public void tomarFacultadSeleccionada(String facultad) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         this.facultad=facultad;
+        this.buscarCentrosDeFacultad(facultad);
+    }
+
+    private void buscarCentrosDeFacultad(String facultad) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT * FROM CentrosInestigacion WHERE facultad= "+facultad);
+        while(res.next()){
+            
+            CompuestoLugares compuesto = new CompuestoLugares();
+            pantalla.mostrarCentrosDeInvestigacion(compuesto.getNombreJerarquia(3,facultad));
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
+    }
+
+    public void tomarCentroInvestigacionSeleccionado(String centroInvestigacion) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            this.centroInvestigacion=centroInvestigacion;
+            this.buscarGruposDeCentro(centroInvestigacion);
+    }
+
+    private void buscarGruposDeCentro(String centroInvestigacion) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT * FROM GruposInvestigacion WHERE centro= "+centroInvestigacion);
+        while(res.next()){
+            
+            CompuestoLugares compuesto = new CompuestoLugares();
+            pantalla.mostrarGruposDeInvestigacion(compuesto.getNombreJerarquia(4,centroInvestigacion));
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
+    }
+
+    public void tomarGrupoInvestigacionSeleccionado(String grupoInvestigacion) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.grupoInvestigacion=grupoInvestigacion;
+        //this.buscarAreasInvestigacion();
     }
     
 }

@@ -38,40 +38,74 @@ public class CompuestoLugares implements IEstructuraLugares{
     public void agregarComponentes(IEstructuraLugares a) {
        }
 
+    //@Override
+//    public CompuestoLugares[] getNombreJerarquia(int niv, CompuestoLugares a) {
+//        
+//        CompuestoLugares[] s = null;
+//        
+//        
+//        if (a != null) {
+//              
+//            switch (niv) {
+//                case 2://FACULTAD
+//                    s = new CompuestoLugares[contarElementos("FACULTAD",a.getNombre())];
+//                    s=listarElementos(s,"FACULTAD",a.getNombre());
+//                    break;
+//                case 3://CENTRO
+//                    s = new CompuestoLugares[contarElementos("CENTRO_INVESTIGACION",a.getNombre())];
+//                    s=listarElementos(s,"CENTRO_INVESTIGACION",a.getNombre());
+//                    break;
+//                case 4://GRUPO
+//                    s = new CompuestoLugares[contarElementos("GRUPO_INVESTIGACION",a.getNombre())];
+//                    s=listarElementos(s,"GRUPO_INVESTIGACION",a.getNombre());
+//                    break;
+//
+//            }
+//
+//        } else {
+//            s = new CompuestoLugares[contarElementos("UNIVERSIDAD",null)];
+//            System.out.println("ELEMENTOS CONTADOS");
+//            s=listarElementos(s,"UNIVERSIDAD");
+//
+//        }
+//        return s;
+//
+//    }
     @Override
-    public CompuestoLugares[] getNombreJerarquia(int niv, CompuestoLugares a) {
+    public String[] getNombreJerarquia(int niv, String seleccionado) {
         
-        CompuestoLugares[] s = null;
+       String[] nombres=null;   
         
-        
-        if (a != null) {
+        if (seleccionado != null) {
               
             switch (niv) {
                 case 2://FACULTAD
-                    s = new CompuestoLugares[contarElementos("FACULTAD",a.getNombre())];
-                    s=listarElementos(s,"FACULTAD",a.getNombre());
+                    nombres = new String[contarElementos("FACULTAD",seleccionado)];
+                    nombres=listarElementos(contarElementos("FACULTAD",seleccionado),"FACULTAD");
                     break;
                 case 3://CENTRO
-                    s = new CompuestoLugares[contarElementos("CENTRO_INVESTIGACION",a.getNombre())];
-                    s=listarElementos(s,"CENTRO_INVESTIGACION",a.getNombre());
+                    nombres = new String[contarElementos("CENTRO_INVESTIGACION",seleccionado)];
+                    nombres=listarElementos(contarElementos("FACULTAD",seleccionado),"CENTRO_INVESTIGACION");
                     break;
                 case 4://GRUPO
-                    s = new CompuestoLugares[contarElementos("GRUPO_INVESTIGACION",a.getNombre())];
-                    s=listarElementos(s,"GRUPO_INVESTIGACION",a.getNombre());
+                    nombres = new String[contarElementos("GRUPO_INVESTIGACION",seleccionado)];
+                    nombres=listarElementos(contarElementos("FACULTAD",seleccionado),"GRUPO_INVESTIGACION");
                     break;
 
             }
 
         } else {
-            s = new CompuestoLugares[contarElementos("UNIVERSIDAD",null)];
+            nombres = new String[contarElementos("UNIVERSIDAD",null)];
             System.out.println("ELEMENTOS CONTADOS");
-            s=listarElementos(s,"UNIVERSIDAD");
+          
+               nombres=listarElementos(contarElementos("UNIVERSIDAD",null),"UNIVERSIDAD"); 
+            
+            
 
         }
-        return s;
+        return nombres;
 
     }
-
     
 
     @Override
@@ -118,75 +152,69 @@ public class CompuestoLugares implements IEstructuraLugares{
         this.nivel = nivel;
     }
     
-    public int contarElementos(String s, String padre) {
-        int contador = 0;
+    public int contarElementos(String nombreTabla, String padre) {
+        int cantidad = 0;
         try {
-            String rs;
+            String sql;
             con = DataBase.getConnection();
             stm = con.createStatement();
             res = null;
             if (padre == null) {
-                rs = "SELECT * FROM " + s;
-                res = stm.executeQuery(rs);
-                while (res.next()) {
-                    contador++;
-                }
+                sql = "SELECT COUNT(*) FROM " + nombreTabla;
+                res = stm.executeQuery(sql);
+                cantidad=res.getInt(1);
             } else {
-                    rs = "SELECT * FROM " + s + " WHERE ID LIKE "+ buscarID(s,padre);
-                res = stm.executeQuery(rs);
-                while (res.next()) {
-                    contador++;
-                }
+                    sql = "SELECT COUNT(*) FROM " + nombreTabla + " WHERE ID LIKE "+ buscarID(nombreTabla,padre);
+                res = stm.executeQuery(sql);
+                cantidad=res.getInt(1);
 
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } 
-        return contador;
+        return cantidad;
     }
     //PARA UNIVERSIDAD
-    public CompuestoLugares[] listarElementos(CompuestoLugares[] s,String a){
-    
+    public String[] listarElementos(int cantidad,String nombreTabla){
+    String[] lista=new String[cantidad];
     int i=0;
     try{
-        String rs;
+        String sql;
         con=DataBase.getConnection();
         stm = con.createStatement();        
-        rs="SELECT * FROM "+a;
-        res=stm.executeQuery(rs);
+        sql="SELECT * FROM "+nombreTabla;
+        res=stm.executeQuery(sql);
                     while(res.next()){
                         System.out.println("LISTANDO");
-                        
+                        lista[i]=res.getNString("NOMBRE");
                         i++;
                     }
             }catch(Exception e){
             System.out.println(e.getMessage());}
-    
-    
-    return s;
+    return lista;
     }
     
     //PARA LOS DEMAS, CAMBIAN LOS PARAMETROS
-    public CompuestoLugares[] listarElementos(CompuestoLugares [] s,String a,String padre){
-        System.out.println("Listar elementos");
-    int i=0;
-    try{
-        String rs;
-        con=DataBase.getConnection();
-        stm = con.createStatement();
-        rs="SELECT * FROM "+a;
-        res=stm.executeQuery(rs);
-                    while(res.next()){
-                        
-                        i++;
-                    }
-            }catch(Exception e){
-            System.out.println(e.getMessage());}
-    
-    
-    return s;
-    }
+//    public CompuestoLugares[] listarElementos(CompuestoLugares [] s,String a,String padre){
+//        System.out.println("Listar elementos");
+//    int i=0;
+//    try{
+//        String rs;
+//        con=DataBase.getConnection();
+//        stm = con.createStatement();
+//        rs="SELECT * FROM "+a;
+//        res=stm.executeQuery(rs);
+//                    while(res.next()){
+//                        
+//                        i++;
+//                    }
+//            }catch(Exception e){
+//            System.out.println(e.getMessage());}
+//    
+//    
+//    return s;
+//    }
     
     
     
