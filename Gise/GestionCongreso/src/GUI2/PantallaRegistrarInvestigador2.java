@@ -27,6 +27,8 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private static GestorRegistrarInvestigador gestor;
     private String nombreInvestigador;
     private String apellidoInvestigador;
+    private String provincia;
+    private String ciudad;
     private String tipoDocumento;
     private long numeroDocumento;
     private int dia;
@@ -93,7 +95,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         universidad=cmb_Universidad.getSelectedItem().toString();
     }
     public void tomarSeleccionFacultad(){
-        facultad=cmb_Facultad.getSelectedItem().toString();
+        facultad = cmb_Facultad.getSelectedItem().toString();
     }
     private void tomarSeleccionCentroInvestigacion() {
         centroInvestigacion=cmb_CentroInvestigacion.getSelectedItem().toString();
@@ -168,7 +170,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         btn_AgregarTodas = new javax.swing.JButton();
         cmb_ciudad = new javax.swing.JComboBox();
         cmb_provincia = new javax.swing.JComboBox();
-        btn_Agregar = new javax.swing.JButton();
         DatosTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         cmb_TipoTitulo = new javax.swing.JComboBox();
@@ -426,7 +427,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DatosAcademicos.add(lbl_areaInvesigacion);
         lbl_areaInvesigacion.setBounds(10, 152, 120, 14);
 
-        cmb_AreaInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_AreaInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { }));
         cmb_AreaInvestigacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_AreaInvestigacionActionPerformed(evt);
@@ -444,7 +445,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DatosAcademicos.add(btn_AgregarTodas);
         btn_AgregarTodas.setBounds(320, 150, 80, 23);
 
-        cmb_ciudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_ciudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
         cmb_ciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_ciudadActionPerformed(evt);
@@ -453,19 +454,14 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DatosAcademicos.add(cmb_ciudad);
         cmb_ciudad.setBounds(140, 190, 260, 20);
 
-        cmb_provincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        DatosAcademicos.add(cmb_provincia);
-        cmb_provincia.setBounds(140, 220, 260, 20);
-
-        btn_Agregar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btn_Agregar.setText("+");
-        btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+        cmb_provincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { }));
+        cmb_provincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AgregarActionPerformed(evt);
+                cmb_provinciaActionPerformed(evt);
             }
         });
-        DatosAcademicos.add(btn_Agregar);
-        btn_Agregar.setBounds(280, 150, 40, 21);
+        DatosAcademicos.add(cmb_provincia);
+        cmb_provincia.setBounds(140, 220, 260, 20);
 
         jTabbedPane1.addTab("Datos Académicos", DatosAcademicos);
 
@@ -587,7 +583,8 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_NumeroActionPerformed
 
     private void btn_Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Siguiente2ActionPerformed
-        // TODO add your handling code here:
+         gestor.tomarAreasInvestigacionSeleccionadas(areasInvestigacion);      
+         
     }//GEN-LAST:event_btn_Siguiente2ActionPerformed
 
     private void cmb_UniversidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_UniversidadActionPerformed
@@ -616,8 +613,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_GrupoInvestigacionActionPerformed
 
     private void btn_AgregarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarTodasActionPerformed
-        // TODO add your handling code here:
-         gestor.tomarAreasInvestigacionSeleccionadas(areasInvestigacion);
+        if (cmb_AreaInvestigacion.getSelectedIndex() != -1) {
+            tomarSeleccionAreaInvestigacion();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un Area de investigacion");
+        }
+        
     }//GEN-LAST:event_btn_AgregarTodasActionPerformed
 
     private void cmb_AreaInvestigacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_AreaInvestigacionActionPerformed
@@ -627,17 +628,20 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_AreaInvestigacionActionPerformed
 
     private void cmb_ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_ciudadActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_cmb_ciudadActionPerformed
 
-    private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
-        // TODO add your handling code here:
-        if(cmb_AreaInvestigacion.getSelectedIndex()!=-1)
-         tomarSeleccionAreaInvestigacion();
-         else
-             javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un Area de investigacion");
-    }//GEN-LAST:event_btn_AgregarActionPerformed
+    private void cmb_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_provinciaActionPerformed
+        this.tomarSeleccionProvincia();
+        gestor.tomarProvinciaSeleccionada(provincia);
+    }//GEN-LAST:event_cmb_provinciaActionPerformed
     
+    
+    
+    private void tomarSeleccionProvincia(){
+        provincia = cmb_provincia.getSelectedItem().toString();
+    }
+   
     private static void habilitarPantalla( PantallaRegistrarInvestigador2 pantalla)
     {
          pantalla.setVisible(true);
@@ -697,7 +701,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JPanel DatosAcademicos;
     private javax.swing.JPanel DatosPersonales;
     private javax.swing.JPanel DatosTitulo;
-    private javax.swing.JButton btn_Agregar;
     private javax.swing.JButton btn_AgregarTodas;
     private javax.swing.JButton btn_Siguiente1;
     private javax.swing.JButton btn_Siguiente2;
@@ -770,5 +773,16 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DefaultComboBoxModel modeloComboGruposInvestigacion = new DefaultComboBoxModel(nombreJerarquia.toArray());
         cmb_GrupoInvestigacion.setModel(modeloComboGruposInvestigacion);
     }
+    
+    public void mostrarCiudad(ArrayList nombreJerarquia) {
+        DefaultComboBoxModel modeloComboGruposInvestigacion = new DefaultComboBoxModel(nombreJerarquia.toArray());
+        cmb_ciudad.setModel(modeloComboGruposInvestigacion);
+    }
+
+    public void mostrarProvincia(ArrayList nombreJerarquia) {
+        DefaultComboBoxModel modeloComboGruposInvestigacion = new DefaultComboBoxModel(nombreJerarquia.toArray());
+        cmb_provincia.setModel(modeloComboGruposInvestigacion);
+    }
+    
 
 }
