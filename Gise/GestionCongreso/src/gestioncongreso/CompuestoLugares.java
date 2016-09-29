@@ -72,17 +72,17 @@ public class CompuestoLugares implements IEstructuraLugares{
               
             switch (niv) {
                 case 2://FACULTAD
-                    nombres = listarElementos("FACULTAD");
+                    nombres = listarElementos("FACULTAD", seleccionado);
                     break;
                 case 3://CENTRO
-                    nombres = listarElementos("CENTRO_INVESTIGACION");
+                    nombres = listarElementos("CENTRO_INVESTIGACION", seleccionado);
                     break;
                 case 4://GRUPO
-                    nombres = listarElementos("GRUPO_INVESTIGACION");
+                    nombres = listarElementos("GRUPO_INVESTIGACION", seleccionado);
                     break;
             }
         } else {
-            nombres = listarElementos("UNIVERSIDAD"); 
+            nombres = listarElementos("UNIVERSIDAD", null); 
         }
         return nombres;
     }
@@ -134,20 +134,29 @@ public class CompuestoLugares implements IEstructuraLugares{
     
 
     //PARA UNIVERSIDAD
-    public ArrayList listarElementos(String nombreTabla){
-    ArrayList lista= new ArrayList();
-    
-    try{
-        String sql;
-        con=DataBase.getConnection();
-        stm = con.createStatement();    
+    public ArrayList listarElementos(String nombreTabla, String nombreTablaPadre, String padre){
+        ArrayList lista= new ArrayList();
+        String sql = "";
         
-        res=stm.executeQuery("SELECT * FROM "+nombreTabla);
-                    while(res.next()){
-                        lista.add(res.getString("NOMBRE_"+nombreTabla));
-                    }
-            }catch(Exception e){
-            System.out.println(e.getMessage());}
+        
+        if (padre != null) {
+            sql = "SELECT * FROM " + nombreTabla + " JOIN " + nombreTablaPadre + " ON ";
+            
+        } else {
+            sql = ("SELECT * FROM " + nombreTabla);
+        }
+            try {
+                con = DataBase.getConnection();
+                stm = con.createStatement();
+
+                res = stm.executeQuery(sql);
+                while (res.next()) {
+                    lista.add(res.getString("NOMBRE_" + nombreTabla));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        
     return lista;
     }
     
@@ -171,6 +180,7 @@ public class CompuestoLugares implements IEstructuraLugares{
 //    return s;
 //    }
     
+    /*
     public int buscarID(String nombre,String padre){
         int i=0;
         try{
@@ -184,7 +194,7 @@ public class CompuestoLugares implements IEstructuraLugares{
             System.out.println(e.getMessage());
         }
         return i;
-    }
+    }*/
 
     @Override
     public IEstructuraLugares[] obtenerHijo() {
