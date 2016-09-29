@@ -64,38 +64,27 @@ public class CompuestoLugares implements IEstructuraLugares{
 //
 //    }
     @Override
-    public String[] getNombreJerarquia(int niv, String seleccionado) {
+    public ArrayList getNombreJerarquia(int niv, String seleccionado) {
         
-       String[] nombres=null;   
+       ArrayList nombres = null;   
         
         if (seleccionado != null) {
               
             switch (niv) {
                 case 2://FACULTAD
-                    nombres = new String[contarElementos("FACULTAD",seleccionado)];
-                    nombres=listarElementos(contarElementos("FACULTAD",seleccionado),"FACULTAD");
+                    nombres = listarElementos("FACULTAD");
                     break;
                 case 3://CENTRO
-                    nombres = new String[contarElementos("CENTRO_INVESTIGACION",seleccionado)];
-                    nombres=listarElementos(contarElementos("FACULTAD",seleccionado),"CENTRO_INVESTIGACION");
+                    nombres = listarElementos("CENTRO_INVESTIGACION");
                     break;
                 case 4://GRUPO
-                    nombres = new String[contarElementos("GRUPO_INVESTIGACION",seleccionado)];
-                    nombres=listarElementos(contarElementos("FACULTAD",seleccionado),"GRUPO_INVESTIGACION");
+                    nombres = listarElementos("GRUPO_INVESTIGACION");
                     break;
-
             }
-
         } else {
-            nombres = new String[contarElementos("UNIVERSIDAD",null)];
-            System.out.println("ELEMENTOS CONTADOS");
-             nombres=listarElementos(contarElementos("UNIVERSIDAD",null),"UNIVERSIDAD"); 
-            
-            
-
+            nombres = listarElementos("UNIVERSIDAD"); 
         }
         return nombres;
-
     }
     
 
@@ -143,50 +132,19 @@ public class CompuestoLugares implements IEstructuraLugares{
         this.nivel = nivel;
     }
     
-    public int contarElementos(String nombreTabla, String padre) {
-        int cantidad = 0;
-        try {
-            String sql;
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-            res = null;
-            if (padre == null) {
-                sql = "SELECT * FROM " + nombreTabla;
-                res = stm.executeQuery(sql);
-                while(res.next()){
-                    cantidad++;
-                }
-                
-                System.out.println("ELEMENTOS: "+cantidad);
-            } else {
-                    sql = "SELECT * FROM " + nombreTabla + " WHERE ID LIKE "+ buscarID(nombreTabla,padre);
-                res = stm.executeQuery(sql);
-                while(res.next()){
-                    cantidad++;
-                }
-                
 
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } 
-        return cantidad;
-    }
     //PARA UNIVERSIDAD
-    public String[] listarElementos(int cantidad,String nombreTabla){
-    String[] lista=new String[cantidad];
-    int i=0;
+    public ArrayList listarElementos(String nombreTabla){
+    ArrayList lista= new ArrayList();
+    
     try{
         String sql;
         con=DataBase.getConnection();
-        stm = con.createStatement();        
-        sql="SELECT * FROM "+nombreTabla;
-        res=stm.executeQuery(sql);
+        stm = con.createStatement();    
+        
+        res=stm.executeQuery("SELECT * FROM "+nombreTabla);
                     while(res.next()){
-                        System.out.println("LISTANDO");
-                        lista[i]=res.getString("NOMBRE_"+nombreTabla);
-                        i++;
+                        lista.add(res.getString("NOMBRE_"+nombreTabla));
                     }
             }catch(Exception e){
             System.out.println(e.getMessage());}
@@ -210,11 +168,8 @@ public class CompuestoLugares implements IEstructuraLugares{
 //            }catch(Exception e){
 //            System.out.println(e.getMessage());}
 //    
-//    
 //    return s;
 //    }
-    
-    
     
     public int buscarID(String nombre,String padre){
         int i=0;

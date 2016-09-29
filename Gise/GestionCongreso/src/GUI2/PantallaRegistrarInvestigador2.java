@@ -712,31 +712,28 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Numero;
     // End of variables declaration//GEN-END:variables
 
-    public void mostrarUniversidades(String[] nombreJerarquia) {
+    public void mostrarUniversidades(ArrayList nombreJerarquia) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        DefaultComboBoxModel modeloComboUniversidades = new DefaultComboBoxModel(nombreJerarquia);
+        DefaultComboBoxModel modeloComboUniversidades = new DefaultComboBoxModel(nombreJerarquia.toArray());
         cmb_Universidad.setModel(modeloComboUniversidades);
     }
 
-    public void mostrarFacultades(String[] nombreJerarquia) {
+    public void mostrarFacultades(ArrayList nombreJerarquia) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        DefaultComboBoxModel modeloComboFacultades = new DefaultComboBoxModel(nombreJerarquia);
+        DefaultComboBoxModel modeloComboFacultades = new DefaultComboBoxModel(nombreJerarquia.toArray());
         cmb_Facultad.setModel(modeloComboFacultades);
     }
 
-    public void mostrarCentrosDeInvestigacion(String[] nombreJerarquia) {
+    public void mostrarCentrosDeInvestigacion(ArrayList nombreJerarquia) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        DefaultComboBoxModel modeloComboCentros = new DefaultComboBoxModel(nombreJerarquia);
+        DefaultComboBoxModel modeloComboCentros = new DefaultComboBoxModel(nombreJerarquia.toArray());
         cmb_CentroInvestigacion.setModel(modeloComboCentros);
     }
 
-    public void mostrarGruposDeInvestigacion(String[] nombreJerarquia) {
+    public void mostrarGruposDeInvestigacion(ArrayList nombreJerarquia) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        DefaultComboBoxModel modeloComboGruposInvestigacion = new DefaultComboBoxModel(nombreJerarquia);
+        DefaultComboBoxModel modeloComboGruposInvestigacion = new DefaultComboBoxModel(nombreJerarquia.toArray());
         cmb_GrupoInvestigacion.setModel(modeloComboGruposInvestigacion);
     }
 
-    
-
-    
 }

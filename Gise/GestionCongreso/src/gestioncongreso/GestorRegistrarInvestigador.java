@@ -175,8 +175,6 @@ public class GestorRegistrarInvestigador {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-         
-         System.out.println("los encontro");
     }  
     public List cargarDatos(){
         List datos=new List();
@@ -240,6 +238,8 @@ public class GestorRegistrarInvestigador {
         }
         }catch(Exception e){
             System.out.println(e.getMessage());
+            
+            System.out.println("IIIIIIIIIIIIIRMAAAAAAA");
         }
          System.out.println("los encontro");
     }

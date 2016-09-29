@@ -15,13 +15,9 @@ public class DataBase {
         public static Connection getConnection() throws SQLException{
             DriverManager.registerDriver(driver);
             //con=DriverManager.getConnection(url,"AdminCongreso","12345678");
-            con=DriverManager.getConnection(url,"AdminCongreso","12345678");  
+            con=DriverManager.getConnection(url,"sa","12345678");  
             
             return con;
         }
-        
-        
-        
-        
     }
 
