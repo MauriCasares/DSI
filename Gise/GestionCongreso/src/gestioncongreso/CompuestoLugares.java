@@ -72,17 +72,17 @@ public class CompuestoLugares implements IEstructuraLugares{
               
             switch (niv) {
                 case 2://FACULTAD
-                    nombres = listarElementos("FACULTAD", seleccionado);
+                    nombres = listarElementos("FACULTAD", "UNIVERSIDAD", seleccionado);
                     break;
                 case 3://CENTRO
-                    nombres = listarElementos("CENTRO_INVESTIGACION", seleccionado);
+                    nombres = listarElementos("CENTRO_INVESTIGACION", "FACULTAD", seleccionado);
                     break;
                 case 4://GRUPO
-                    nombres = listarElementos("GRUPO_INVESTIGACION", seleccionado);
+                    nombres = listarElementos("GRUPO_INVESTIGACION", "CENTRO_INVESTIGACION", seleccionado);
                     break;
             }
         } else {
-            nombres = listarElementos("UNIVERSIDAD", null); 
+            nombres = listarElementos("UNIVERSIDAD", null, null); 
         }
         return nombres;
     }
@@ -140,7 +140,7 @@ public class CompuestoLugares implements IEstructuraLugares{
         
         
         if (padre != null) {
-            sql = "SELECT * FROM " + nombreTabla + " JOIN " + nombreTablaPadre + " ON ";
+            sql = "SELECT * FROM " + nombreTabla + " NT JOIN " + nombreTablaPadre + " TP ON TN.ID_"+nombreTablaPadre+" = TP.ID_"+nombreTablaPadre+" WHERE NOMBRE_"+nombreTablaPadre+" LIKE "+ padre;
             
         } else {
             sql = ("SELECT * FROM " + nombreTabla);
@@ -151,7 +151,7 @@ public class CompuestoLugares implements IEstructuraLugares{
 
                 res = stm.executeQuery(sql);
                 while (res.next()) {
-                    lista.add(res.getString("NOMBRE_" + nombreTabla));
+                    lista.add(res.getString("NOMBRE_"+ nombreTabla));
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -180,21 +180,21 @@ public class CompuestoLugares implements IEstructuraLugares{
 //    return s;
 //    }
     
-    /*
+    
     public int buscarID(String nombre,String padre){
-        int i=0;
-        try{
-        con = DataBase.getConnection();
-        stm = con.createStatement();        
-        res = stm.executeQuery("SELECT * FROM "+nombre.toUpperCase()+" WHERE NOMBRE LIKE "+padre.toUpperCase());
-        System.out.println(res.getString(1));
-        i = res.getInt(1);
-        con.close();
-        }catch(Exception e){
+        int i = 0;
+        try {
+            con = DataBase.getConnection();
+            stm = con.createStatement();
+            res = stm.executeQuery("SELECT * FROM " + nombre.toUpperCase() + " WHERE NOMBRE LIKE " + padre.toUpperCase());
+            System.out.println(res.getString(1));
+            i = res.getInt(1);
+            con.close();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return i;
-    }*/
+    }
 
     @Override
     public IEstructuraLugares[] obtenerHijo() {
