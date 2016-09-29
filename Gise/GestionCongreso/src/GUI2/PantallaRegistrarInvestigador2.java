@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.GregorianCalendar;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Ochan12
@@ -71,7 +72,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }
     public void tomarSeleccionTipoDocumento()
     {
-        tipoDocumento=cmb_TipoDocumento1.getSelectedItem().toString();
+        tipoDocumento=cmb_TipoDocumento.getSelectedItem().toString();
     }
     public void tomarNumeroInvestigador()
     {
@@ -79,7 +80,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }
     public void mostrarTiposDocumentos(ArrayList lista){
         DefaultComboBoxModel modeloComboTipoDoc = new DefaultComboBoxModel(lista.toArray());
-        cmb_TipoDocumento1.setModel(modeloComboTipoDoc);
+        cmb_TipoDocumento.setModel(modeloComboTipoDoc);
     }
     public void mostrarAreasInvestigacion (ArrayList lista){
         DefaultComboBoxModel modeloComboAreaInvestigacion = new DefaultComboBoxModel(lista.toArray());
@@ -148,7 +149,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         txt_Nombre = new javax.swing.JTextField();
         txt_Mail = new javax.swing.JTextField();
         btn_Siguiente1 = new javax.swing.JButton();
-        cmb_TipoDocumento1 = new javax.swing.JComboBox();
+        cmb_TipoDocumento = new javax.swing.JComboBox();
         cmb_mes = new javax.swing.JComboBox();
         cmb_año = new javax.swing.JComboBox();
         btn_validar = new javax.swing.JButton();
@@ -182,7 +183,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         cmb_Categoria = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
-        btn_Siguiente3 = new javax.swing.JButton();
+        btn_registrar = new javax.swing.JButton();
         cmb_dia1 = new javax.swing.JComboBox();
         cmb_mes1 = new javax.swing.JComboBox();
         cmb_año1 = new javax.swing.JComboBox();
@@ -266,7 +267,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(lbl_TipoDocumento)
                 .addGap(4, 4, 4)
-                .addComponent(cmb_TipoDocumento1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmb_TipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel1)
                 .addGap(4, 4, 4)
@@ -319,7 +320,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                         .addComponent(lbl_TipoDocumento))
                     .addGroup(DatosPersonalesLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(cmb_TipoDocumento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmb_TipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DatosPersonalesLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jLabel1))
@@ -492,7 +493,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
         jLabel10.setText("Fecha Obtención:");
 
-        btn_Siguiente3.setText("Siguiente");
+        btn_registrar.setText("REGISTRAR");
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrarActionPerformed(evt);
+            }
+        });
 
         cmb_dia1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -522,6 +528,27 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatosTituloLayout.createSequentialGroup()
                 .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cmb_Titulo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmb_TipoTitulo, 0, 219, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DatosTituloLayout.createSequentialGroup()
+                        .addComponent(cmb_dia1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmb_mes1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosTituloLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosTituloLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_Siguiente3))
@@ -550,6 +577,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_AgregarTitulos)))
                         .addGap(0, 8, Short.MAX_VALUE)))
+>>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
                 .addContainerGap())
         );
         DatosTituloLayout.setVerticalGroup(
@@ -580,8 +608,13 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                         .addComponent(cmb_dia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmb_mes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+<<<<<<< HEAD
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(btn_registrar)
+=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(btn_Siguiente3)
+>>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
                 .addContainerGap())
         );
 
@@ -670,6 +703,64 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cmb_ciudadActionPerformed
 
+<<<<<<< HEAD
+    private void cmb_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_provinciaActionPerformed
+        this.tomarSeleccionProvincia();
+        gestor.tomarProvinciaSeleccionada(provincia);
+    }//GEN-LAST:event_cmb_provinciaActionPerformed
+
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
+        JOptionPane cartel = new JOptionPane();
+        cartel.setVisible(true);
+        
+    }//GEN-LAST:event_btn_registrarActionPerformed
+    
+    
+    private void validarDatosMinimos(){
+        if(txt_Apellido.getText().compareTo("") == 0){
+            
+        }
+        
+        if(txt_Nombre.getText().compareTo("") == 0){
+            
+        }
+        
+        if(txt_Numero.getText().compareTo("") == 0){
+            
+        }
+        
+        if(cmb_TipoDocumento.getSelectedIndex() == -1){
+            
+        }
+        
+        if(cmb_Facultad.getSelectedIndex() == -1){
+            
+        }
+        
+        if(cmb_Universidad.getSelectedIndex() == -1){
+            
+        }
+        
+        if(cmb_CentroInvestigacion.getSelectedIndex() == -1){
+            
+        }
+        
+        if(cmb_GrupoInvestigacion.getSelectedIndex() == -1){
+            
+        }
+        
+        if(cmb_AreaInvestigacion.getSelectedIndex() == -1){
+            
+        }
+        
+        if(cmb_Categoria.getSelectedIndex() == -1){
+            
+        }
+    }
+    
+    
+    
+=======
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
         // TODO add your handling code here:
         if(cmb_AreaInvestigacion.getSelectedIndex()!=-1)
@@ -690,6 +781,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         gestor.tomarTitulosSeleccionados(titulos);
     }//GEN-LAST:event_btn_AgregarTitulosActionPerformed
+>>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
     
     private static void habilitarPantalla( PantallaRegistrarInvestigador2 pantalla)
     {
@@ -755,15 +847,19 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JButton btn_AgregarTodas;
     private javax.swing.JButton btn_Siguiente1;
     private javax.swing.JButton btn_Siguiente2;
+<<<<<<< HEAD
+    private javax.swing.JButton btn_registrar;
+=======
     private javax.swing.JButton btn_Siguiente3;
     private javax.swing.JButton btn_sumarTitulo;
+>>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
     private javax.swing.JButton btn_validar;
     private javax.swing.JComboBox cmb_AreaInvestigacion;
     private javax.swing.JComboBox cmb_Categoria;
     private javax.swing.JComboBox cmb_CentroInvestigacion;
     private javax.swing.JComboBox cmb_Facultad;
     private javax.swing.JComboBox cmb_GrupoInvestigacion;
-    private javax.swing.JComboBox cmb_TipoDocumento1;
+    private javax.swing.JComboBox cmb_TipoDocumento;
     private javax.swing.JComboBox cmb_TipoTitulo;
     private javax.swing.JComboBox cmb_Titulo;
     private javax.swing.JComboBox cmb_Universidad;
@@ -831,5 +927,8 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DefaultComboBoxModel modeloComboTitulos = new DefaultComboBoxModel(titulos.toArray());
         cmb_Titulo.setModel(modeloComboTitulos);
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
 }

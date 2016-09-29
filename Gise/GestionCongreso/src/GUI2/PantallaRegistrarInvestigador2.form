@@ -74,7 +74,7 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Component id="lbl_TipoDocumento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                      <Component id="cmb_TipoDocumento1" min="-2" pref="78" max="-2" attributes="0"/>
+                      <Component id="cmb_TipoDocumento" min="-2" pref="78" max="-2" attributes="0"/>
                       <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
@@ -137,7 +137,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                              <Component id="cmb_TipoDocumento1" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmb_TipoDocumento" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
@@ -237,7 +237,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Siguiente1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cmb_TipoDocumento1">
+            <Component class="javax.swing.JComboBox" name="cmb_TipoDocumento">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -568,6 +568,14 @@
                               <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+<<<<<<< HEAD
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btn_registrar" min="-2" pref="108" max="-2" attributes="0"/>
+=======
+>>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -608,8 +616,13 @@
                               <Component id="cmb_año1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+<<<<<<< HEAD
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                      <Component id="btn_registrar" min="-2" max="-2" attributes="0"/>
+=======
                       <EmptySpace pref="119" max="32767" attributes="0"/>
                       <Component id="btn_Siguiente3" min="-2" max="-2" attributes="0"/>
+>>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -657,10 +670,13 @@
                 <Property name="text" type="java.lang.String" value="Fecha Obtenci&#xf3;n:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_Siguiente3">
+            <Component class="javax.swing.JButton" name="btn_registrar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Siguiente"/>
+                <Property name="text" type="java.lang.String" value="REGISTRAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_registrarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmb_dia1">
               <Properties>
