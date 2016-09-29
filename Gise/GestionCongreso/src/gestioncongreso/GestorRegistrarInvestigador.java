@@ -23,6 +23,7 @@ public class GestorRegistrarInvestigador {
     private String centroInvestigacion;
     private String grupoInvestigacion;
     private ArrayList<String> areasInvestigacion;
+    private ArrayList<String> titulos;
     
     public GestorRegistrarInvestigador(){
         
@@ -321,7 +322,34 @@ public class GestorRegistrarInvestigador {
         }
          System.out.println("los encontro");
     }
+    
+    public void tomarTitulosSeleccionados(ArrayList<String> titulos) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         this.titulos=titulos;
+         //buscarTipoTutulo();
+    }
      
-     
+    private void buscarTitulos()
+    {
+        ArrayList vectorTitulos = new ArrayList();
+        int i =0;
+        try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT * FROM TITULO");
+        while(res.next()){
+            
+            Titulo t = new Titulo(res.getString(3),res.getString(2));
+            vectorTitulos.add(t.getNombre());
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
+        
+         pantalla.mostrarTitulos(vectorTitulos);
+    }
     
 }

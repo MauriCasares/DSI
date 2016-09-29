@@ -38,6 +38,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private String centroInvestigacion;
     private String grupoInvestigacion;
     private ArrayList<String> areasInvestigacion;
+    private ArrayList<String> titulos;
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
         initComponents();
@@ -103,6 +104,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }
      private void tomarSeleccionAreaInvestigacion(){
          areasInvestigacion.add(cmb_AreaInvestigacion.getSelectedItem().toString());
+     }
+     
+     private void tomarTitulosSeleccionados(){
+         titulos.add(cmb_Titulo.getSelectedItem().toString());
      }
     private void setFechaNacimiento(int d, int m, int a)
     {
@@ -181,6 +186,8 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         cmb_dia1 = new javax.swing.JComboBox();
         cmb_mes1 = new javax.swing.JComboBox();
         cmb_año1 = new javax.swing.JComboBox();
+        btn_sumarTitulo = new javax.swing.JButton();
+        btn_AgregarTitulos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
@@ -493,45 +500,75 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
         cmb_año1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btn_sumarTitulo.setText("+");
+        btn_sumarTitulo.setName("btn_sumarTitulo"); // NOI18N
+        btn_sumarTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sumarTituloActionPerformed(evt);
+            }
+        });
+
+        btn_AgregarTitulos.setText("Agregar");
+        btn_AgregarTitulos.setName("btn_agregarTitulos"); // NOI18N
+        btn_AgregarTitulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AgregarTitulosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DatosTituloLayout = new javax.swing.GroupLayout(DatosTitulo);
         DatosTitulo.setLayout(DatosTituloLayout);
         DatosTituloLayout.setHorizontalGroup(
             DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatosTituloLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cmb_Titulo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmb_TipoTitulo, 0, 219, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DatosTituloLayout.createSequentialGroup()
-                        .addComponent(cmb_dia1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmb_mes1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmb_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosTituloLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Siguiente3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosTituloLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Siguiente3))
+                    .addGroup(DatosTituloLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DatosTituloLayout.createSequentialGroup()
+                                    .addComponent(cmb_dia1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cmb_mes1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmb_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmb_TipoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(DatosTituloLayout.createSequentialGroup()
+                                .addComponent(cmb_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_sumarTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_AgregarTitulos)))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         DatosTituloLayout.setVerticalGroup(
             DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatosTituloLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cmb_TipoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DatosTituloLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosTituloLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmb_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_sumarTitulo)
+                            .addComponent(btn_AgregarTitulos))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(cmb_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_TipoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DatosTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -543,14 +580,14 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                         .addComponent(cmb_dia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmb_mes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(btn_Siguiente3)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Títulos", DatosTitulo);
 
-        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -588,6 +625,8 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
     private void btn_Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Siguiente2ActionPerformed
         // TODO add your handling code here:
+        gestor.tomarCiudadYProvinciaSeleccionadas();
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_btn_Siguiente2ActionPerformed
 
     private void cmb_UniversidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_UniversidadActionPerformed
@@ -628,6 +667,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
     private void cmb_ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_ciudadActionPerformed
         // TODO add your handling code here:
+        if(cmb_Titulo.getSelectedIndex()!=-1)
+         tomarSeleccionTitulos();
+         else
+             javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un titulo");
     }//GEN-LAST:event_cmb_ciudadActionPerformed
 
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
@@ -637,6 +680,15 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
          else
              javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un Area de investigacion");
     }//GEN-LAST:event_btn_AgregarActionPerformed
+
+    private void btn_sumarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sumarTituloActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btn_sumarTituloActionPerformed
+
+    private void btn_AgregarTitulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarTitulosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AgregarTitulosActionPerformed
     
     private static void habilitarPantalla( PantallaRegistrarInvestigador2 pantalla)
     {
@@ -698,10 +750,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JPanel DatosPersonales;
     private javax.swing.JPanel DatosTitulo;
     private javax.swing.JButton btn_Agregar;
+    private javax.swing.JButton btn_AgregarTitulos;
     private javax.swing.JButton btn_AgregarTodas;
     private javax.swing.JButton btn_Siguiente1;
     private javax.swing.JButton btn_Siguiente2;
     private javax.swing.JButton btn_Siguiente3;
+    private javax.swing.JButton btn_sumarTitulo;
     private javax.swing.JButton btn_validar;
     private javax.swing.JComboBox cmb_AreaInvestigacion;
     private javax.swing.JComboBox cmb_Categoria;
@@ -769,6 +823,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         DefaultComboBoxModel modeloComboGruposInvestigacion = new DefaultComboBoxModel(nombreJerarquia.toArray());
         cmb_GrupoInvestigacion.setModel(modeloComboGruposInvestigacion);
+    }
+    
+    public void mostrarTitulos(ArrayList titulos) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DefaultComboBoxModel modeloComboTitulos = new DefaultComboBoxModel(titulos.toArray());
+        cmb_Titulo.setModel(modeloComboTitulos);
     }
 
 }
