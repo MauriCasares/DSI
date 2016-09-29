@@ -22,6 +22,7 @@ public class GestorRegistrarInvestigador {
     private String facultad;
     private String centroInvestigacion;
     private String grupoInvestigacion;
+    private ArrayList<String> areasInvestigacion;
     
     public GestorRegistrarInvestigador(){
         
@@ -296,7 +297,7 @@ public class GestorRegistrarInvestigador {
     public void tomarGrupoInvestigacionSeleccionado(String grupoInvestigacion) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         this.grupoInvestigacion=grupoInvestigacion;
-        //this.buscarAreasInvestigacion();
+        this.buscarAreasInvestigacion();
     }
     
      private void buscarAreasInvestigacion()
@@ -320,6 +321,32 @@ public class GestorRegistrarInvestigador {
          System.out.println("los encontro");
         
          pantalla.mostrarAreasInvestigacion (vectorAreaInvestigacion);
+    }
+
+    public void tomarAreasInvestigacionSeleccionadas(ArrayList<String> areasInvestigacion) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         this.areasInvestigacion=areasInvestigacion;
+         buscarCiudadYProvinciaFacultad();
+    }
+
+    private void buscarCiudadYProvinciaFacultad() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CompuestoLugares facultad=new CompuestoLugares(null,this.facultad, 2);
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT Ciudad FROM Facultad WHERE facultad= "+this.facultad);
+        while(res.next()){
+            
+            CompuestoLugares compuesto = new CompuestoLugares();
+            pantalla.mostrarCentrosDeInvestigacion(compuesto.getNombreJerarquia(3,this.facultad));
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
     }
      
      

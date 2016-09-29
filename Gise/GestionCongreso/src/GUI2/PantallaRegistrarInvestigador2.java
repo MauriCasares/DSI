@@ -37,6 +37,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private String facultad;
     private String centroInvestigacion;
     private String grupoInvestigacion;
+    private ArrayList<String> areasInvestigacion;
     public PantallaRegistrarInvestigador2() {
         super("Registrar Investigador");
         initComponents();
@@ -100,6 +101,9 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
      private void tomarSeleccionGrupoInvestigacion() {
         grupoInvestigacion=cmb_GrupoInvestigacion.getSelectedItem().toString();
     }
+     private void tomarSeleccionAreaInvestigacion(){
+         areasInvestigacion.add(cmb_AreaInvestigacion.getSelectedItem().toString());
+     }
     private void setFechaNacimiento(int d, int m, int a)
     {
        Calendar cal=new GregorianCalendar();
@@ -161,9 +165,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         btn_Siguiente2 = new javax.swing.JButton();
         lbl_areaInvesigacion = new javax.swing.JLabel();
         cmb_AreaInvestigacion = new javax.swing.JComboBox();
-        btn_agregarAreaI = new javax.swing.JButton();
+        btn_AgregarTodas = new javax.swing.JButton();
         cmb_ciudad = new javax.swing.JComboBox();
         cmb_provincia = new javax.swing.JComboBox();
+        btn_Agregar = new javax.swing.JButton();
         DatosTitulo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         cmb_TipoTitulo = new javax.swing.JComboBox();
@@ -365,11 +370,11 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
         lbl_Ciudad.setText("Ciudad:");
         DatosAcademicos.add(lbl_Ciudad);
-        lbl_Ciudad.setBounds(82, 196, 37, 14);
+        lbl_Ciudad.setBounds(90, 190, 37, 14);
 
         lbl_Provincia.setText("Provincia:");
         DatosAcademicos.add(lbl_Provincia);
-        lbl_Provincia.setBounds(72, 226, 47, 14);
+        lbl_Provincia.setBounds(80, 220, 47, 14);
 
         cmb_Universidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_Universidad.addActionListener(new java.awt.event.ActionListener() {
@@ -378,7 +383,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_Universidad);
-        cmb_Universidad.setBounds(140, 20, 250, 20);
+        cmb_Universidad.setBounds(140, 20, 260, 20);
 
         cmb_Facultad.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_Facultad.addActionListener(new java.awt.event.ActionListener() {
@@ -387,7 +392,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_Facultad);
-        cmb_Facultad.setBounds(140, 50, 250, 20);
+        cmb_Facultad.setBounds(140, 50, 260, 20);
 
         cmb_CentroInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_CentroInvestigacion.addActionListener(new java.awt.event.ActionListener() {
@@ -396,7 +401,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_CentroInvestigacion);
-        cmb_CentroInvestigacion.setBounds(140, 80, 250, 20);
+        cmb_CentroInvestigacion.setBounds(140, 80, 260, 20);
 
         cmb_GrupoInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
         cmb_GrupoInvestigacion.addActionListener(new java.awt.event.ActionListener() {
@@ -405,7 +410,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
             }
         });
         DatosAcademicos.add(cmb_GrupoInvestigacion);
-        cmb_GrupoInvestigacion.setBounds(140, 110, 250, 20);
+        cmb_GrupoInvestigacion.setBounds(140, 110, 260, 20);
 
         btn_Siguiente2.setText("Siguiente");
         btn_Siguiente2.addActionListener(new java.awt.event.ActionListener() {
@@ -422,25 +427,45 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         lbl_areaInvesigacion.setBounds(10, 152, 120, 14);
 
         cmb_AreaInvestigacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        DatosAcademicos.add(cmb_AreaInvestigacion);
-        cmb_AreaInvestigacion.setBounds(140, 149, 159, 20);
-
-        btn_agregarAreaI.setText("Agregar");
-        btn_agregarAreaI.addActionListener(new java.awt.event.ActionListener() {
+        cmb_AreaInvestigacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_agregarAreaIActionPerformed(evt);
+                cmb_AreaInvestigacionActionPerformed(evt);
             }
         });
-        DatosAcademicos.add(btn_agregarAreaI);
-        btn_agregarAreaI.setBounds(320, 148, 71, 23);
+        DatosAcademicos.add(cmb_AreaInvestigacion);
+        cmb_AreaInvestigacion.setBounds(140, 149, 140, 20);
+
+        btn_AgregarTodas.setText("Agregar");
+        btn_AgregarTodas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AgregarTodasActionPerformed(evt);
+            }
+        });
+        DatosAcademicos.add(btn_AgregarTodas);
+        btn_AgregarTodas.setBounds(320, 150, 80, 23);
 
         cmb_ciudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_ciudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_ciudadActionPerformed(evt);
+            }
+        });
         DatosAcademicos.add(cmb_ciudad);
-        cmb_ciudad.setBounds(140, 190, 250, 20);
+        cmb_ciudad.setBounds(140, 190, 260, 20);
 
         cmb_provincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         DatosAcademicos.add(cmb_provincia);
-        cmb_provincia.setBounds(140, 220, 250, 20);
+        cmb_provincia.setBounds(140, 220, 260, 20);
+
+        btn_Agregar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btn_Agregar.setText("+");
+        btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AgregarActionPerformed(evt);
+            }
+        });
+        DatosAcademicos.add(btn_Agregar);
+        btn_Agregar.setBounds(280, 150, 40, 21);
 
         jTabbedPane1.addTab("Datos Académicos", DatosAcademicos);
 
@@ -490,7 +515,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmb_año1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmb_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosTituloLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Siguiente3)
@@ -592,9 +617,28 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         gestor.tomarGrupoInvestigacionSeleccionado(grupoInvestigacion);
     }//GEN-LAST:event_cmb_GrupoInvestigacionActionPerformed
 
-    private void btn_agregarAreaIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarAreaIActionPerformed
+    private void btn_AgregarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarTodasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_agregarAreaIActionPerformed
+         gestor.tomarAreasInvestigacionSeleccionadas(areasInvestigacion);
+    }//GEN-LAST:event_btn_AgregarTodasActionPerformed
+
+    private void cmb_AreaInvestigacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_AreaInvestigacionActionPerformed
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_cmb_AreaInvestigacionActionPerformed
+
+    private void cmb_ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_ciudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_ciudadActionPerformed
+
+    private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
+        // TODO add your handling code here:
+        if(cmb_AreaInvestigacion.getSelectedIndex()!=-1)
+         tomarSeleccionAreaInvestigacion();
+         else
+             javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un Area de investigacion");
+    }//GEN-LAST:event_btn_AgregarActionPerformed
     
     private static void habilitarPantalla( PantallaRegistrarInvestigador2 pantalla)
     {
@@ -655,10 +699,11 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JPanel DatosAcademicos;
     private javax.swing.JPanel DatosPersonales;
     private javax.swing.JPanel DatosTitulo;
+    private javax.swing.JButton btn_Agregar;
+    private javax.swing.JButton btn_AgregarTodas;
     private javax.swing.JButton btn_Siguiente1;
     private javax.swing.JButton btn_Siguiente2;
     private javax.swing.JButton btn_Siguiente3;
-    private javax.swing.JButton btn_agregarAreaI;
     private javax.swing.JButton btn_validar;
     private javax.swing.JComboBox cmb_AreaInvestigacion;
     private javax.swing.JComboBox cmb_Categoria;
