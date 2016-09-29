@@ -23,6 +23,10 @@ public class GestorRegistrarInvestigador {
     private String centroInvestigacion;
     private String grupoInvestigacion;
     
+    public GestorRegistrarInvestigador(){
+        
+    }
+    
     public void registrarInvestigador(GUI2.PantallaRegistrarInvestigador2 p) throws SQLException
     {
         pantalla = p;
@@ -91,8 +95,7 @@ public class GestorRegistrarInvestigador {
         int i =0;
          try{
         con=DataBase.getConnection();
-        stm = con.createStatement();
-        
+        stm = con.createStatement();        
         res=stm.executeQuery("SELECT * FROM Tipo_Documento");
         while(res.next()){
             
@@ -156,30 +159,23 @@ public class GestorRegistrarInvestigador {
             setFechaNacimiento(fecha);
             setFechaActual();
             if (validarFechaNacimiento(fechaActual,fecha))
-                System.out.println("JOACO SOS CAGON");
+                this.buscarUniversidades();
        // } catch (SQLException ex) {
         //    Logger.getLogger(GestorRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
         //}
-             this.buscarUniversidades();
+             
     }
     public boolean validarFechaNacimiento(java.sql.Date fechaActual,java.sql.Date fechaNacimiento){
         return fechaNacimiento.before(fechaActual);
     }
     public void buscarUniversidades(){
          try{
-        con=DataBase.getConnection();
-        stm = con.createStatement();
-        
-        res=stm.executeQuery("SELECT * FROM Universidades");
-        while(res.next()){
-            
-            CompuestoLugares compuesto = new CompuestoLugares();
-            pantalla.mostrarUniversidades(compuesto.getNombreJerarquia(1,null));
-                       
-        }
+        CompuestoLugares C = new CompuestoLugares();
+        pantalla.mostrarUniversidades(C.getNombreJerarquia(1, null));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+         
          System.out.println("los encontro");
     }  
     public List cargarDatos(){

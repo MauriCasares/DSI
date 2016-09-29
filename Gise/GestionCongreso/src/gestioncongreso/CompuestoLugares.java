@@ -89,8 +89,7 @@ public class CompuestoLugares implements IEstructuraLugares{
         } else {
             nombres = new String[contarElementos("UNIVERSIDAD",null)];
             System.out.println("ELEMENTOS CONTADOS");
-          
-               nombres=listarElementos(contarElementos("UNIVERSIDAD",null),"UNIVERSIDAD"); 
+             nombres=listarElementos(contarElementos("UNIVERSIDAD",null),"UNIVERSIDAD"); 
             
             
 
@@ -152,13 +151,20 @@ public class CompuestoLugares implements IEstructuraLugares{
             stm = con.createStatement();
             res = null;
             if (padre == null) {
-                sql = "SELECT COUNT(*) FROM " + nombreTabla;
+                sql = "SELECT * FROM " + nombreTabla;
                 res = stm.executeQuery(sql);
-                cantidad=res.getInt(1);
+                while(res.next()){
+                    cantidad++;
+                }
+                
+                System.out.println("ELEMENTOS: "+cantidad);
             } else {
-                    sql = "SELECT COUNT(*) FROM " + nombreTabla + " WHERE ID LIKE "+ buscarID(nombreTabla,padre);
+                    sql = "SELECT * FROM " + nombreTabla + " WHERE ID LIKE "+ buscarID(nombreTabla,padre);
                 res = stm.executeQuery(sql);
-                cantidad=res.getInt(1);
+                while(res.next()){
+                    cantidad++;
+                }
+                
 
             }
 
@@ -179,7 +185,7 @@ public class CompuestoLugares implements IEstructuraLugares{
         res=stm.executeQuery(sql);
                     while(res.next()){
                         System.out.println("LISTANDO");
-                        lista[i]=res.getNString("NOMBRE");
+                        lista[i]=res.getString("NOMBRE_"+nombreTabla);
                         i++;
                     }
             }catch(Exception e){
