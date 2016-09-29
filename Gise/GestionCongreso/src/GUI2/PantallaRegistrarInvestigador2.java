@@ -703,7 +703,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cmb_ciudadActionPerformed
 
-<<<<<<< HEAD
+    
     private void cmb_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_provinciaActionPerformed
         this.tomarSeleccionProvincia();
         gestor.tomarProvinciaSeleccionada(provincia);
@@ -759,8 +759,6 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }
     
     
-    
-=======
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
         // TODO add your handling code here:
         if(cmb_AreaInvestigacion.getSelectedIndex()!=-1)
@@ -781,7 +779,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         gestor.tomarTitulosSeleccionados(titulos);
     }//GEN-LAST:event_btn_AgregarTitulosActionPerformed
->>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
+
     
     private static void habilitarPantalla( PantallaRegistrarInvestigador2 pantalla)
     {
@@ -847,12 +845,9 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     private javax.swing.JButton btn_AgregarTodas;
     private javax.swing.JButton btn_Siguiente1;
     private javax.swing.JButton btn_Siguiente2;
-<<<<<<< HEAD
     private javax.swing.JButton btn_registrar;
-=======
     private javax.swing.JButton btn_Siguiente3;
     private javax.swing.JButton btn_sumarTitulo;
->>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
     private javax.swing.JButton btn_validar;
     private javax.swing.JComboBox cmb_AreaInvestigacion;
     private javax.swing.JComboBox cmb_Categoria;
@@ -927,8 +922,3 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
         DefaultComboBoxModel modeloComboTitulos = new DefaultComboBoxModel(titulos.toArray());
         cmb_Titulo.setModel(modeloComboTitulos);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 97754da908eb677463a3afc2dc4fca98693b3445
-}
