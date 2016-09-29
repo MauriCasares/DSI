@@ -600,14 +600,12 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_diaActionPerformed
 
     private void cmb_FacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_FacultadActionPerformed
-        // TODO add your handling code here:
-          this.tomarSeleccionFacultad();
+        this.tomarSeleccionFacultad();
         gestor.tomarFacultadSeleccionada(facultad);
     }//GEN-LAST:event_cmb_FacultadActionPerformed
 
     private void cmb_CentroInvestigacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CentroInvestigacionActionPerformed
-        // TODO add your handling code here:
-         this.tomarSeleccionCentroInvestigacion();
+        this.tomarSeleccionCentroInvestigacion();
         gestor.tomarCentroInvestigacionSeleccionado(centroInvestigacion);
     }//GEN-LAST:event_cmb_CentroInvestigacionActionPerformed
 
