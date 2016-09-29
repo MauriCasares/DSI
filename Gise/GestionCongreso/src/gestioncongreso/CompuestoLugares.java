@@ -134,16 +134,15 @@ public class CompuestoLugares implements IEstructuraLugares{
     
 
     //PARA UNIVERSIDAD
-    public ArrayList listarElementos(String nombreTabla, String nombreTablaPadre, String padre){
+    public ArrayList listarElementos(String nombreTabla, String nombreTablaPadre, String seleccionado){
         ArrayList lista= new ArrayList();
         String sql = "";
         
-        
-        if (padre != null) {
-            sql = "SELECT * FROM " + nombreTabla + " NT JOIN " + nombreTablaPadre + " TP ON TN.ID_"+nombreTablaPadre+" = TP.ID_"+nombreTablaPadre+" WHERE NOMBRE_"+nombreTablaPadre+" LIKE "+ padre;
+        if (seleccionado != null) {
+            sql = "SELECT NOMBRE_"+nombreTabla+" FROM " + nombreTabla + " TH JOIN " + nombreTablaPadre + " TP ON TH.ID_"+nombreTablaPadre+" = TP.ID_"+nombreTablaPadre+" WHERE NOMBRE_"+nombreTablaPadre+" LIKE '"+ seleccionado+"'";
             
         } else {
-            sql = ("SELECT * FROM " + nombreTabla);
+            sql = ("SELECT NOMBRE_"+nombreTabla+" FROM " + nombreTabla);
         }
             try {
                 con = DataBase.getConnection();
@@ -160,25 +159,6 @@ public class CompuestoLugares implements IEstructuraLugares{
     return lista;
     }
     
-    //PARA LOS DEMAS, CAMBIAN LOS PARAMETROS
-//    public CompuestoLugares[] listarElementos(CompuestoLugares [] s,String a,String padre){
-//        System.out.println("Listar elementos");
-//    int i=0;
-//    try{
-//        String rs;
-//        con=DataBase.getConnection();
-//        stm = con.createStatement();
-//        rs="SELECT * FROM "+a;
-//        res=stm.executeQuery(rs);
-//                    while(res.next()){
-//                        
-//                        i++;
-//                    }
-//            }catch(Exception e){
-//            System.out.println(e.getMessage());}
-//    
-//    return s;
-//    }
     
     
     public int buscarID(String nombre,String padre){
