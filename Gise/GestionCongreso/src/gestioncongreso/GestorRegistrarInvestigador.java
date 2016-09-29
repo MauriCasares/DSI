@@ -1,14 +1,12 @@
 package gestioncongreso;
-
 import java.util.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GestorRegistrarInvestigador {
-
     private Connection con;
-    private ResultSet res;
+    private ResultSet res ;
     private Statement stm;
     private GUI2.PantallaRegistrarInvestigador2 pantalla;
     private String nombreInvestigador;
@@ -24,17 +22,19 @@ public class GestorRegistrarInvestigador {
     private String facultad;
     private String centroInvestigacion;
     private String grupoInvestigacion;
-    private String provincia;
     private ArrayList<String> areasInvestigacion;
-
-    public GestorRegistrarInvestigador() {
-
+    private ArrayList<String> titulos;
+    
+    public GestorRegistrarInvestigador(){
+        
     }
-
-    public void registrarInvestigador(GUI2.PantallaRegistrarInvestigador2 p) throws SQLException {
+    
+    public void registrarInvestigador(GUI2.PantallaRegistrarInvestigador2 p) throws SQLException
+    {
         pantalla = p;
-        pantalla.mostrarTiposDocumentos(buscarTipoDocumento());
+        pantalla.mostrarTiposDocumentos(buscarTipoDocumento());              
     }
+    
 
     public String getNombreInvestigador() {
         return nombreInvestigador;
@@ -78,114 +78,111 @@ public class GestorRegistrarInvestigador {
     }
 
     public java.sql.Date getFechaActual() {
-
+      
         return fechaActual;
-
-    }
-
+        
+    }    
+    
     public void setFechaActual() {
-        Calendar d = Calendar.getInstance();
+        Calendar d= Calendar.getInstance();
         long fecha = d.getTimeInMillis();
-        fechaActual = new java.sql.Date(fecha);
-        System.out.println("Fecha Actual: " + fechaActual);
-
+        fechaActual= new java.sql.Date(fecha);
+        System.out.println("Fecha Actual: "+fechaActual);
+        
     }
-
-    private ArrayList buscarTipoDocumento() {
+    
+    private ArrayList buscarTipoDocumento()
+    {
         ArrayList vectorTipoDoc = new ArrayList();
-        int i = 0;
-        try {
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-            res = stm.executeQuery("SELECT * FROM Tipo_Documento");
-            while (res.next()) {
-
-                TipoDocumento t = new TipoDocumento(res.getString(2), res.getString(1));
-                vectorTipoDoc.add(t.getAbreviatura());
-
-            }
-        } catch (Exception e) {
+        int i =0;
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();        
+        res=stm.executeQuery("SELECT * FROM Tipo_Documento");
+        while(res.next()){
+            
+            TipoDocumento t = new TipoDocumento(res.getString(2),res.getString(1));
+            vectorTipoDoc.add(t.getAbreviatura());
+                       
+        }
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println("los encontro");
+         System.out.println("los encontro");
         return vectorTipoDoc;
     }
-
-    public void tomarDatosInvestigador(String nombre, String apellido, String tipoDoc, long nroDoc) throws SQLException {
-        try {
-            setNombreInvestigador(nombre);
-            setApellidoInvestigador(apellido);
-            if (validarInvestigador(nroDoc, tipoDoc)) {   //no existe
-                setNroDocumento(nroDoc);
-                setTipoDocumento(tipoDoc);
-                System.out.println("TIRO UN SOUT");
-                pantalla.solicitarSeleccionFechaNacimiento();
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(pantalla, "Ya existe un investigador con ese Documento");
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+    
+    
+    public void tomarDatosInvestigador(String nombre, String apellido, String tipoDoc, long nroDoc) throws SQLException{
+        try{
+        setNombreInvestigador(nombre);
+        setApellidoInvestigador(apellido);
+        if(validarInvestigador(nroDoc,tipoDoc))
+        {   //no existe
+            setNroDocumento(nroDoc);
+            setTipoDocumento(tipoDoc);
+            System.out.println("TIRO UN SOUT");
+            pantalla.solicitarSeleccionFechaNacimiento();
+        } else {javax.swing.JOptionPane.showMessageDialog(pantalla, "Ya existe un investigador con ese Documento");}
+        }catch (SQLException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+        
         }
-
-    }
-
-    public boolean validarInvestigador(long nroDoc, String tipoDoc) throws SQLException {
-
-        try {
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-            res = stm.executeQuery("SELECT * FROM Investigador I JOIN Tipo_Documento T ON I.id_tipo_documento=T.id_tipo_documento ");
-            while (res.next() && res != null) {
-                System.out.println(tipoDoc + " " + nroDoc);
-                TipoDocumento t = new TipoDocumento(res.getString("abreviatura"), res.getString("nombre_tipo_documento"));
-                Investigador inv = new Investigador(res.getLong("NRO_DOCUMENTO_INVESTIGADOR"), t);
-                System.out.println(t.getAbreviatura() + " " + inv.getNroDocumento());
-
-                if (inv.existeInvestigador(nroDoc, tipoDoc)) {
-                    System.out.println("sergi roberto");
-                    return false; //existe
+   public boolean validarInvestigador(long nroDoc,String tipoDoc) throws SQLException{
+       
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();        
+        res=stm.executeQuery("SELECT * FROM Investigador I JOIN Tipo_Documento T ON I.id_tipo_documento=T.id_tipo_documento ");
+        while(res.next()&&res!=null){           
+            System.out.println(tipoDoc+" "+nroDoc);
+            TipoDocumento t = new TipoDocumento(res.getString("abreviatura"),res.getString("nombre_tipo_documento"));
+            Investigador inv=new Investigador(res.getLong("NRO_DOCUMENTO_INVESTIGADOR"),t);
+            System.out.println(t.getAbreviatura()+" "+inv.getNroDocumento());
+            
+            if(inv.existeInvestigador(nroDoc, tipoDoc)){
+                System.out.println("sergi roberto");
+                return false; //existe
                 }
             }
-
-        } catch (Exception e) {
+        
+        }catch(Exception e){
             System.out.println(e.getMessage());
-        } finally {
-            con.close();
         }
+         finally{
+             con.close();
+         }
         return true;
-    }
+   } 
 
-    public void tomarFechaNacimientoSeleccionada(java.sql.Date fecha) {
+    public void tomarFechaNacimientoSeleccionada(java.sql.Date fecha){
         //try {
-        setFechaNacimiento(fecha);
-        setFechaActual();
-        if (validarFechaNacimiento(fechaActual, fecha)) {
-            this.buscarUniversidades();
-        }
+            setFechaNacimiento(fecha);
+            setFechaActual();
+            if (validarFechaNacimiento(fechaActual,fecha))
+                this.buscarUniversidades();
        // } catch (SQLException ex) {
         //    Logger.getLogger(GestorRegistrarInvestigador.class.getName()).log(Level.SEVERE, null, ex);
         //}
-
+             
     }
-
-    public boolean validarFechaNacimiento(java.sql.Date fechaActual, java.sql.Date fechaNacimiento) {
+    public boolean validarFechaNacimiento(java.sql.Date fechaActual,java.sql.Date fechaNacimiento){
         return fechaNacimiento.before(fechaActual);
     }
-
-    public void buscarUniversidades() {
-        try {
-            CompuestoLugares C = new CompuestoLugares();
-            pantalla.mostrarUniversidades(C.getNombreJerarquia(1, null));
-        } catch (Exception e) {
+    public void buscarUniversidades(){
+         try{
+        CompuestoLugares C = new CompuestoLugares();
+        pantalla.mostrarUniversidades(C.getNombreJerarquia(1, null));
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }
-
-    public List cargarDatos() {
-        List datos = new List();
+    }  
+    public List cargarDatos(){
+        List datos=new List();
         int nivel = 1;
         for (int i = 1; i < 5; i++) {
-            buscar(nivel, datos);
+            buscar(nivel,datos);
         }
         return datos;
     }
@@ -193,36 +190,33 @@ public class GestorRegistrarInvestigador {
 //      CompuestoLugares C = new CompuestoLugares();  
 //      return C.getNombreJerarquia(1, null);
 //    }
-
-    public List buscar(int nivel, List datos) {
-        String compuesto = "UNIVERSIDAD", descripcion, nombre;
-        switch (nivel) {
-            case 2:
-                compuesto = "FACULTAD";
-                break;
-            case 3:
-                compuesto = "CENTRO_INVESTIGACION";
-                break;
-            case 4:
-                compuesto = "GRUPO_INVESTIGACION";
-                break;
+    
+    public List buscar(int nivel,List datos){
+      String compuesto = "UNIVERSIDAD",descripcion,nombre;
+      switch(nivel){
+          case 2: compuesto = "FACULTAD";
+              break;
+          case 3: compuesto = "CENTRO_INVESTIGACION";
+              break;
+          case 4: compuesto = "GRUPO_INVESTIGACION";
+              break;
+              }
+      try{
+        con = DataBase.getConnection();
+        stm = con.createStatement();
+        res=stm.executeQuery("SELECT * FROM "+compuesto);
+        while(res.next()){
+            descripcion = res.getString("DESCRIPCION_"+compuesto);
+            nombre = res.getString("NOMBRE_"+compuesto);
+            CompuestoLugares nuevo = new CompuestoLugares(descripcion,nombre,nivel);
+            datos.add(nuevo);
+            
         }
-        try {
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-            res = stm.executeQuery("SELECT * FROM " + compuesto);
-            while (res.next()) {
-                descripcion = res.getString("DESCRIPCION_" + compuesto);
-                nombre = res.getString("NOMBRE_" + compuesto);
-                CompuestoLugares nuevo = new CompuestoLugares(descripcion, nombre, nivel);
-                datos.add(nuevo);
-
-            }
-
-        } catch (Exception e) {
+        
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        return datos;
+      return datos;
     }
 
     public void tomarUniversidadSeleccionada(String universidad) {
@@ -246,12 +240,11 @@ public class GestorRegistrarInvestigador {
     public void tomarFacultadSeleccionada(String facultad) {
         this.facultad = facultad;
         this.buscarCentrosDeFacultad(facultad);
-        this.buscarProvincia();
     }
 
     private void buscarCentrosDeFacultad(String facultad) {
         try {
-
+            
             CompuestoLugares compuesto = new CompuestoLugares();
             pantalla.mostrarCentrosDeInvestigacion(compuesto.getNombreJerarquia(3, facultad));
 
@@ -261,8 +254,8 @@ public class GestorRegistrarInvestigador {
     }
 
     public void tomarCentroInvestigacionSeleccionado(String centroInvestigacion) {
-        this.centroInvestigacion = centroInvestigacion;
-        this.buscarGruposDeCentro(centroInvestigacion);
+            this.centroInvestigacion = centroInvestigacion;
+            this.buscarGruposDeCentro(centroInvestigacion);
     }
 
     private void buscarGruposDeCentro(String centroInvestigacion) {
@@ -277,119 +270,86 @@ public class GestorRegistrarInvestigador {
 
     public void tomarGrupoInvestigacionSeleccionado(String grupoInvestigacion) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        this.grupoInvestigacion = grupoInvestigacion;
+        this.grupoInvestigacion=grupoInvestigacion;
         this.buscarAreasInvestigacion();
     }
     
-    public void tomarProvinciaSeleccionada(String provincia) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        this.provincia = provincia;
-        this.buscarCiudad(provincia);
-    }
-    
-
-    private void buscarAreasInvestigacion() {
+     private void buscarAreasInvestigacion()
+    {
         ArrayList vectorAreaInvestigacion = new ArrayList();
-        int i = 0;
-        try {
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-
-            res = stm.executeQuery("SELECT * FROM Area_Investigacion");
-            while (res.next()) {
-
-                AreaInvestigacion t = new AreaInvestigacion(res.getString(3), res.getString(2));
-                vectorAreaInvestigacion.add(t.getNombre());
-
-            }
-        } catch (Exception e) {
+        int i =0;
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT * FROM Area_Investigacion");
+        while(res.next()){
+            
+            AreaInvestigacion t = new AreaInvestigacion(res.getString(3),res.getString(2));
+            vectorAreaInvestigacion.add(t.getNombre());
+                       
+        }
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println("los encontro");
-
-        pantalla.mostrarAreasInvestigacion(vectorAreaInvestigacion);
+         System.out.println("los encontro");
+        
+         pantalla.mostrarAreasInvestigacion (vectorAreaInvestigacion);
     }
-
- 
-    
-    private void buscarProvincia() {
-        ArrayList vectorProvincia= new ArrayList();
-        
-        String seleccion = "";
-        
-        try {
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-
-            res = stm.executeQuery("SELECT * FROM Provincia");
-            while (res.next()) {
-                vectorProvincia.add(res.getString("NOMBRE_PROVINCIA"));
-            }
-            
-            res = stm.executeQuery("SELECT NOMBRE_PROVINCIA FROM  FACULTAD F JOIN  CIUDAD C ON F.ID_CIUDAD = C.ID_CIUDAD JOIN PROVINCIA P ON P.ID_PROVINCIA = C.ID_PROVINCIA WHERE F.NOMBRE_FACULTAD = '"+ this.facultad +"'");
-            
-            seleccion = res.getString("NOMBRE_PROVINCIA");
-            
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        pantalla.mostrarProvincia(vectorProvincia);
-    }
-    
-    private void buscarCiudad(String provincia) {
-        ArrayList vectorCiudad= new ArrayList();
-        
-        String seleccion = "";
-        
-        try {
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-
-            res = stm.executeQuery("SELECT * FROM Ciudad C JOIN Provincia P ON C.ID_PROVINCIA = P.ID_PROVINCIA WHERE P.NOMBRE_PROVINCIA = '" + provincia+"'");
-            while (res.next()) {
-                vectorCiudad.add(res.getString("NOMBRE_CIUDAD"));
-            }
-            
-            res = stm.executeQuery("SELECT NOMBRE_CIUDAD FROM CIUDAD C JOIN FACULTAD F ON F.ID_CIUDAD = C.ID_CIUDAD WHERE F.NOMBRE_FACULTAD = '"+this.facultad+"'");
-            
-            System.out.println(""+ facultad);
-            
-            seleccion = res.getString("NOMBRE_CIUDAD");
-            
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        pantalla.mostrarCiudad(vectorCiudad);
-    }
-
-    
 
     public void tomarAreasInvestigacionSeleccionadas(ArrayList<String> areasInvestigacion) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        this.areasInvestigacion = areasInvestigacion;
-        buscarCiudadYProvinciaFacultad();
+         this.areasInvestigacion=areasInvestigacion;
+         buscarCiudadYProvinciaFacultad();
     }
 
     private void buscarCiudadYProvinciaFacultad() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        CompuestoLugares facultad = new CompuestoLugares(null, this.facultad, 2);
-        try {
-            con = DataBase.getConnection();
-            stm = con.createStatement();
-
-            res = stm.executeQuery("SELECT Ciudad FROM Facultad WHERE facultad= " + this.facultad);
-            while (res.next()) {
-
-                CompuestoLugares compuesto = new CompuestoLugares();
-                pantalla.mostrarCentrosDeInvestigacion(compuesto.getNombreJerarquia(3, this.facultad));
-
-            }
-        } catch (Exception e) {
+        CompuestoLugares facultad=new CompuestoLugares(null,this.facultad, 2);
+         try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT Ciudad FROM Facultad WHERE facultad= "+this.facultad);
+        while(res.next()){
+            
+            CompuestoLugares compuesto = new CompuestoLugares();
+            pantalla.mostrarCentrosDeInvestigacion(compuesto.getNombreJerarquia(3,this.facultad));
+                       
+        }
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println("los encontro");
+         System.out.println("los encontro");
     }
-
+    
+    public void tomarTitulosSeleccionados(ArrayList<String> titulos) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         this.titulos=titulos;
+         //buscarTipoTutulo();
+    }
+     
+    private void buscarTitulos()
+    {
+        ArrayList vectorTitulos = new ArrayList();
+        int i =0;
+        try{
+        con=DataBase.getConnection();
+        stm = con.createStatement();
+        
+        res=stm.executeQuery("SELECT * FROM TITULO");
+        while(res.next()){
+            
+            Titulo t = new Titulo(res.getString(3),res.getString(2));
+            vectorTitulos.add(t.getNombre());
+                       
+        }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+         System.out.println("los encontro");
+        
+         pantalla.mostrarTitulos(vectorTitulos);
+    }
+    
 }
