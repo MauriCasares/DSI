@@ -326,7 +326,7 @@ public class GestorRegistrarInvestigador {
     public void tomarTitulosSeleccionados(ArrayList<String> titulos) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
          this.titulos=titulos;
-         //buscarTipoTitulo();
+         //buscarTipoTutulo();
     }
      
     private void buscarTitulos()

@@ -107,7 +107,7 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
          areasInvestigacion.add(cmb_AreaInvestigacion.getSelectedItem().toString());
      }
      
-     private void tomarSeleccionTitulos(){
+     private void tomarTitulosSeleccionados(){
          titulos.add(cmb_Titulo.getSelectedItem().toString());
      }
     private void setFechaNacimiento(int d, int m, int a)
@@ -700,7 +700,10 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
     private void cmb_ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_ciudadActionPerformed
         // TODO add your handling code here:
-        
+        if(cmb_Titulo.getSelectedIndex()!=-1)
+         tomarSeleccionTitulos();
+         else
+             javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un titulo");
     }//GEN-LAST:event_cmb_ciudadActionPerformed
 
     
@@ -769,15 +772,11 @@ public class PantallaRegistrarInvestigador2 extends javax.swing.JFrame {
 
     private void btn_sumarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sumarTituloActionPerformed
         // TODO add your handling code here:
-        if(cmb_Titulo.getSelectedIndex()!=-1)
-        tomarSeleccionTitulos();
-        else
-             javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un titulo");
+        
     }//GEN-LAST:event_btn_sumarTituloActionPerformed
 
     private void btn_AgregarTitulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarTitulosActionPerformed
         // TODO add your handling code here:
-        gestor.tomarTitulosSeleccionados(titulos);
     }//GEN-LAST:event_btn_AgregarTitulosActionPerformed
 
     
